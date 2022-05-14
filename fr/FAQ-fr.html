@@ -4,6 +4,7 @@
         AUTHOR: DMITRY, EDGAR
         LAST UPDATED: MAY 02
     -->
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -309,6 +310,20 @@
                             <input class="form-control" id="floatingInput1" required="required">
                             <label class="text-dark" for="floatingInput1">Nom</label>
                         </div>
+                        <!--preferred communication-->
+                        <div>
+                            <p style="text-align: center;">Méthode de contact préférée</p>
+                        </div>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary form-control" type="button">Téléphone</button>
+                            <button class="btn btn-outline-secondary form-control" type="button">Email</button>
+                        </div>
+                        <!--phone number-->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="phone" placeholder="e.g. (555) 867-5309"
+                                size="16" maxlength="16" required="required">
+                            <label for="phone" class="text-dark">Numéro de téléphone</label>
+                        </div>
                         <!--email-->
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput2" required="required">
@@ -316,7 +331,8 @@
                         </div>
                         <!-- reason -->
                         <div class="form-floating">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" required="required">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                                required="required">
                                 <option selected>Veuillez sélectionner un champ</option>
                                 <option value="1">Lies a l'investissement</option>
                                 <option value="2">Question technique</option>
@@ -328,14 +344,13 @@
                         <br />
                         <!--text area-->
                         <div class="form-floating">
-                            <textarea class="form-control" required="required"
-                                id="floatingTextarea"></textarea>
+                            <textarea class="form-control" required="required" id="floatingTextarea"></textarea>
                             <label class="text-dark" for="floatingTextarea">Commentaires</label>
                         </div>
                         <!--submit-->
                         <br />
                         <input type="submit" id="submit_comment" value="soumettre" class="btn btn-outline-light"
-                             role="button">
+                            role="button">
 
                     </div>
                 </div>
