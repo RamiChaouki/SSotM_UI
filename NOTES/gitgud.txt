@@ -1,0 +1,76 @@
+git init -initial-branch=main
+^Creates a local repo called main (instead of default 'master')
+
+git add .
+^Stages all files, folders and subfolders in the current directory
+
+git add --all
+^Stages all files, folders and subfolders in your local repository
+
+git commit -m "Insert comment here"
+^The '-m' is a command that allows you to insert your comment on why you made the commit
+
+git tag 28ksh232
+^adds a tag to the commit with the SHA 28ksh232
+
+git tag -a 28ksh232
+^
+^adds a tag to the commit with the SHA 28ksh232 and includes a description
+
+git log
+^ lists the commits and merges made
+
+git log --oneline
+^condenses each commit to a single line
+
+git branch -l
+^lists what branch you're currently on, as well as any other branches
+
+git branch branchName 28ksh232
+^creates branch starting from the commit with the SHA of 28ksh232
+
+git branch -d branchName
+^Deletes branchName branch
+
+git merge branchName
+^merges branchName into the active branch (where the head is pointing)
+
+git reset 28ksh232
+^goes back to the commit with SHA 28ksh232 
+
+git reset head~1
+^goes back 1 commit ago, head~2 would go back 2 commits ago, etc...
+
+git checkout branchName
+^Changes the branch you're in to branchName
+
+git branch branchName
+^creates a new branch named branchName
+
+git checkout -b branchName
+^Creates new branch called branchName AND changes branch to branchName
+
+
+REMOTE FUNCTIONS
+git remote add origin https://github.com/SpicyRiceTea/SSotM_UI.git
+^connects your local repository to the remote url https://github.com/SpicyRiceTea/SSotM_UI.git AND gives it the nickname 'origin'. You could have written anything other than origin and it would still work. (e.g. git remote add project https://github.com/SpicyRiceTea/SSotM_UI.git).
+
+git push --set-upstream origin main
+SAME AS
+git push -u origin main
+^ when you 'set-upstream' (can be shortened to -u), you are linking your current local branch to the remote branch 'main' in the 'origin' repo. Any subsequent push does not need to mention 'origin' or 'main' since they have already been set as the default push location.
+
+git remote show origin
+^shows where each of the local branches push to in origin. origin can be replaced by the repository's https (e.g. git remote show https://github.com/SpicyRiceTea/SSotM_UI.git)
+
+git branch -vv
+^ does the same thing as 'git remote show origin' but does not include the Fetch and Push URL or which branch is the head
+
+
+
+//**********************************//
+//***********TROUBLESHOOTING********//
+//**********************************//
+
+
+
