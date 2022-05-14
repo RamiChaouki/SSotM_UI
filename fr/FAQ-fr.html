@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!--
+        AUTHOR: DMITRY, EDGAR
+        LAST UPDATED: MAY 02
+    -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--CHANGE TITLE-->
+    <title>FAQ Foire aux questions</title>
+    <meta name="author" content="SSotM" />
+    <meta name="keywords"
+        content="questions, space, space travel, moon, spaceship, solar system, explore, lune, espace, exploration" />
+    <!--CHANGE DESCRIPTION-->
+    <meta name="description" content="FAQ Frequently Asked Questions" />
+
+    <!--BOOTSTRAP CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--BOOTSTRAP JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!--Custom CSS-->
+    <link href="./css/FAQ.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-black text-white parallax">
+
+
+    <!--NAVBAR BEGIN-->
+    <nav class="container-fluid cus-bg m-0 p-0" style="overflow-x:hidden;">
+        <div class="row navbar py-0">
+
+            <div class="col-md-3 d-md-none " style="text-align:center">
+                <a href="./index-fr.html" class="d-md-none">
+                    <img src="./images/mockLogo2.png" style="height:120px; width: auto;"
+                        alt="Sunny side of the Moon: Un logo comportant une lune qui brille"
+                        title="La face ensoleilée de la lune" />
+                </a>
+            </div>
+
+            <div class="col-md-2  nav-link " style="text-align:center">
+                <a class="cus-nav-style" href="./activity-packages-fr.html#packages">forfaits</a>
+            </div>
+
+            <div class="col-md-2 nav-link" style="text-align:center">
+                <a href="./activity-packages-fr.html#activities" class="cus-nav-style">activités</a>
+            </div>
+
+            <div class="col-md-4 d-none d-md-block" style="text-align:center">
+                <a href="./index-fr.html">
+                    <img src="./images/mockLogo2.png" style="height:120px; width: auto;"
+                        alt="Sunny side of the Moon: Un logo comportant une lune qui brille"
+                        title="La face ensoleilée de la lune" />
+                </a>
+            </div>
+
+            <div class="col-md-1 nav-link" style="text-align:center">
+                <a href="./FAQ-fr.html#about-us" class="cus-nav-style">qui sommes-nous</a>
+            </div>
+
+            <div class="col-md-1 nav-link" style="text-align:center">
+                <a href="./FAQ-fr.html#faq" class="cus-nav-style">faqs</a>
+            </div>
+
+            <div class="col-md py-4 d-flex justify-content-center">
+                <select id="lang" onchange="countryHandler(this.value)" class="form-select" style="width: 50%;">
+                    <option value="./fr/FAQ-fr">Français</option>
+                    <option value="../FAQ"> English</option>
+
+                </select>
+            </div>
+
+        </div>
+    </nav>
+    <!--NAVBAR END-->
+
+
+    <!-- About Us -->
+    <div class=" container row text-center" id="about-us" style="margin: 3rem auto;">
+        <p class="h2">À propos de nous</p>
+        <p class="h4">
+            L'impossible devient possible lorsque des esprits brillants se réunissent - nous sommes heureux de vous
+            présenter Sunny&nbsp;Side&nbsp;of&nbsp;the&nbsp;Moon&nbsp;Tours!</p>
+        <p class="h4">
+            Présenté par des entrepreneurs en série - les fondateurs du célèbre restaurant Sunny&nbsp;Breakfast et de la
+            Sunny&nbsp;Medical&nbsp;Clinic, en partenariat avec Elon&nbsp;Musk, Jeff&nbsp;Bezos et
+            Mitchell&nbsp;Fridman.</p>
+    </div>
+
+    <div class="container" style="margin: 3rem auto;">
+        <div class="row text-center">
+            <div class="col">
+                <p class="h2" id="our-partners">Nos partenaires</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <figure class="figure mx-auto d-block">
+                    <a href="https://en.wikipedia.org/wiki/Jeff_Bezos"><img src="./images/JeffBezos.JPG"
+                            class="figure-img img-fluid rounded mx-auto d-block" alt="Jeff Bezos"
+                            style="height:50%; width: 50%;"></a>
+                    <figcaption class="figure-caption text-center">
+                        <p>
+                            Jeff Bezos
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="col-sm-4">
+                <figure class="figure mx-auto d-block">
+                    <a href="https://www.facebook.com/mitchell.fridman"><img src="./images/MitchellFridman.jpg"
+                            class="figure-img img-fluid rounded mx-auto d-block" alt="Mitchell Fridman"
+                            style="height:50%; width: 50%;"></a>
+                    <figcaption class="figure-caption text-center">
+                        <p>
+                            Mitchell Fridman
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="col-sm-4">
+                <figure class="figure mx-auto d-block">
+                    <a href="https://en.wikipedia.org/wiki/Elon_Musk"><img src="./images/ElonMusk.jpg"
+                            class="figure-img img-fluid rounded mx-auto d-block" alt="Elon Musk"
+                            style="height:50%; width: 50%;"></a>
+                    <figcaption class="figure-caption text-center">
+                        <p>
+                            Elon Musk
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FAQ Begin-->
+    <div class="container">
+        <div class="row">
+            <div class="container col-md-6" id="faq">
+                <h2> FAQ Foire aux questions</h2>
+                <div class="accordion open  opacity-75" id="accordionFlushExample">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                <b> Combien de temps dure le vol?</b>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Le record actuel pour un aller simple est de 69h 8 min. Il est
+                                détenu par l'équipage d'Apollo 8. Notre vol cependant prend un peu plus de temps dû au
+                                ravitaillement d’essence en orbite ce qui nous ramène à un vol d’un peu moins que trois
+                                jours!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                <b> Y a-t-il internet à bord ?</b>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Nous réalisons que passer 3 jours sans vos appareils
+                                électroniques pourrait rendre certaines personnes grincheuses, nous nous sommes donc
+                                assurés qu'il y a une connexion internet haute vitesse tout au long du vol.</div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                <b>Est-ce que toute la nourriture sur le vol et la lune sont en tube ? </b>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Les options alimentaires sont nombreuses tout au long de votre
+                                voyage et non, elles ne se limitent pas aux substances gluantes contenues dans des tubes
+                                comme le dentifrice, bien que nous ayons cette option pour vous si vous voulez vivre
+                                l'expérience astronaute complète!</div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                aria-controls="flush-collapseFour">
+                                <b> Comment dormons-nous pendant notre voyage ? </b>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Bien que l'espace dans le vaisseau soit limité, tout le monde
+                                possède une capsule où pour avoir un peu d’intimité et pour dormir, mais n'oubliez pas
+                                de vous attacher ou vous flotterez !
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFive" aria-expanded="false"
+                                aria-controls="flush-collapseFive">
+                                <b>Comment fonctionnent les toilettes dans l'espace ?</b>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Les toilettes lunaires fonctionnent tout comme celle sur Terre.
+                                Sur le vaisseau, en revanche, les choses sont un peu plus intéressantes - imaginez si
+                                les toilettes de l'avion et un aspirateur avaient eu un bébé. Oui, vous le faites comme
+                                de vrais astronautes !</div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseSix" aria-expanded="false"
+                                aria-controls="flush-collapseSix">
+                                <b> Pouvons-nous emmener nos enfants ?</b>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSix" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Les adolescents sont les bienvenus dans nos voyages. Pour des
+                                raisons de sécurités, nous conseillons aux parents d'enfants plus jeunes de prendre des
+                                dispositions pour qu'ils restent sur Terre.</div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingSeven">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseSeven" aria-expanded="false"
+                                aria-controls="flush-collapseSeven">
+                                <b>Les G élevés au décollage sont-ils dangereux ?</b>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSeven" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Les astronautes et les passagers ressentiront environ 3 fois la
+                                force de gravité lors du décollage. Bien que cela puisse sembler beaucoup, ce n'est pas
+                                sans rappeler les G que vous pourriez rencontrer sur des montagnes russes. En vous
+                                soumettant à un examen médical rigoureux et en vous équipant de combinaisons résistantes
+                                aux forces gravitationnelles, nous rendons la séquence de décollage aussi sûre que
+                                possible. </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container col-md-6" id="moon3D">
+                <!-- Moon 3D model -->
+                <iframe id="moonInteract" src='https://solarsystem.nasa.gov/gltf_embed/2366'></iframe>
+                <!-- Moon 3D model END-->
+            </div>
+        </div>
+    </div>
+    <!-- FAQ End-->
+
+
+    <!-- Starship Video -->
+    <div class="container " style="margin-top: 3rem;">
+        <div class="ratio ratio-16x9">
+            <video autoplay controls muted loop>
+                <source src="../videos/StarshipInside1.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+
+    <!-- Contact Us-->
+    <form id="contact-us" method="get" action="FAQ-fr.html">
+        <div class="opacity-75">
+            <div class="container-lg">
+                <div class="row justify-content-center my-5">
+                    <h2 class="text-center" style="color:white">Nous Contacter</h2>
+                    <div class="col-lg-6">
+
+
+                        <!--name-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="floatingInput1" required="required">
+                            <label class="text-dark" for="floatingInput1">Nom</label>
+                        </div>
+                        <!--email-->
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput2" required="required">
+                            <label class="text-dark" for="floatingInput2">Adresse courriel</label>
+                        </div>
+                        <!-- reason -->
+                        <div class="form-floating">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" required="required">
+                                <option selected>Veuillez sélectionner un champ</option>
+                                <option value="1">Lies a l'investissement</option>
+                                <option value="2">Question technique</option>
+                                <option value="3">Lies au marriage</option>
+                                <option value="4">Question generale</option>
+                            </select>
+                            <label class="text-dark" for="floatingSelect">Comment pouvons nous aider </label>
+                        </div>
+                        <br />
+                        <!--text area-->
+                        <div class="form-floating">
+                            <textarea class="form-control" required="required"
+                                id="floatingTextarea"></textarea>
+                            <label class="text-dark" for="floatingTextarea">Commentaires</label>
+                        </div>
+                        <!--submit-->
+                        <br />
+                        <input type="submit" id="submit_comment" value="soumettre" class="btn btn-outline-light"
+                             role="button">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--End of Contact Us-->
+
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white" style="border-top:5px solid rgb(198, 179, 179);">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <nav class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1"
+                    href="https://www.facebook.com/Sunny-Side-of-the-Moon-103395659035464" role="button"><i
+                        class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/SunnySideotMoon"
+                    role="button"><i class="fab fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="www.google.com" role="button"><i
+                        class="fab fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1"
+                    href="https://www.instagram.com/sunnysideofthemoonofficial/" role="button"><i
+                        class="fab fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="www.linkedin.com" role="button"><i
+                        class="fab fa-linkedin-in"></i></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/SpicyRiceTea/SSotM"
+                    role="button"><i class="fab fa-github"></i></a>
+            </nav>
+            <!-- Section: Social media -->
+
+            <!-- Section: Form -->
+            <aside id="newsletter">
+                <form>
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center">
+                        <!--Grid column-->
+                        <div class="col-auto">
+                            <p class="pt-2">
+                                <strong>Inscrivez-vous à notre infolettre</strong>
+                            </p>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-5 col-12">
+                            <!-- Email input -->
+                            <div class="form-outline form-white mb-4">
+                                <input type="email" id="form5Example21" class="form-control" />
+                                <label class="form-label" for="form5Example21">Adresse courriel</label>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-auto">
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-outline-light mb-4">
+                                S’inscrire
+                            </button>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </form>
+            </aside>
+            <!-- Section: Form -->
+
+            <!-- Section: Text -->
+            <aside class="mb-4">
+                <p>
+                    Sunny Side of the Moon&trade; (SSotM)&trade;; est une agence de voyage travaillant en tandem avec
+                    SpaceY&trade;, Blue Oranges&trade;, et respectant les décrets du Bureau des affaires spatiales de
+                    l’ONU (UNOV). En réservant un forfait avec nous, vous acceptez de respecter les <a
+                        class="text-white" href="">politiques d'entreprise </a> de nos partenaires ainsi que les <a
+                        class="text-white" href="">résolutions de l'UNOV</a> associés aux voyages dans l'espace et aux
+                    visites lunaires.
+                </p>
+            </aside>
+            <!-- Section: Text -->
+
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Résaux Sociaux</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="https://www.facebook.com/Sunny-Side-of-the-Moon-103395659035464"
+                                    class="text-white">Facebook</a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/SunnySideotMoon" class="text-white">Twitter</a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/sunnysideofthemoonofficial/"
+                                    class="text-white">Instagram</a>
+                            </li>
+                            <li>
+                                <a href="www.linkedin.com" class="text-white">LinkedIn</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Navigation</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="./splash-fr.html" class="text-white">Page d’accueil</a>
+                            </li>
+                            <li>
+                                <a href="./activity-package-fr.html#activities" class="text-white">Activités</a>
+                            </li>
+                            <li>
+                                <a href="./activity-packages-fr.html#packages" class="text-white">Forfaits</a>
+                            </li>
+                            <li>
+                                <a href="./FAQ-fr.html#about-us" class="text-white">Qui sommes-nous?</a>
+                            </li>
+                            <li>
+                                <a href="./FAQ-fr.html#faqs" class="text-white">FAQs</a>
+                            </li>
+                            <li>
+                                <a href="./FAQ-fr.html#contact-us" class="text-white">Nous-rejoindre</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">En Apprendre Plus</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#!" class="text-white">Carières</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Politiques environnementales</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Exigences concernant la santé</a>
+                            </li>
+                            <li>
+                                <a href="./terms-and-conditions-fr.html" class="text-white">Termes et conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Liens Utiles</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="https://www.unoosa.org" class="text-white">Le bureau des affaires spatiales de
+                                    l’ONU (UNOV)</a>
+                            </li>
+                            <li>
+                                <a href="https://www.spacex.com" class="text-white">SpaceY</a>
+                            </li>
+                            <li>
+                                <a href="https://www.blueorigin.com/" class="text-white">Blue Oranges</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+
+            <!-- Google Translator BEGIN-->
+            <div class="row">
+                <div class="col"></div>
+                <div class="col" id="google_translate_element" style="margin: 1.5rem 0 0 0"></div>
+                <div class="col"></div>
+            </div>
+
+            <script>// <![CDATA[
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({
+                        pageLanguage: 'en-fr',
+                        layout: google.translate.TranslateElement.InlineLayout
+                    },
+                        'google_translate_element');
+                }
+    // ]]></script>
+            <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <!-- Google Translate end-->
+
+
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 droit d’auteur:
+            <a class="text-white" href="./index-fr.html">SSotM.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+    <script src="https://kit.fontawesome.com/1978e00067.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        function countryHandler(value) {
+            window.location.assign(`${value}.html`);
+        }
+    </script>
+
+</body>
+
+</html>

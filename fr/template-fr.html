@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+      <!--
+        AUTHOR: RAMI CHAOUKI
+        LAST UPDATED: MAY 02
+    -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--CHANGE TITLE-->
+  <title>Navigation and footer Template</title>
+  <meta name="author" content="SSotM" />
+  <meta name="keywords"
+    content="space, space travel, moon, spaceship, solar system, explore, lune, espace, exploration" />
+  <!--CHANGE DESCRIPTION-->
+  <meta name="description" content="ADD YOUR DESCRIPTION FOR THIS PAGE HERE" />
+
+  <!--BOOTSTRAP CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="./css/custom.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+
+  <!--NAVBAR BEGIN-->
+  <nav class="container-fluid cus-bg m-0 p-0" style="overflow-x:hidden;">
+    <div class="row navbar py-0">
+
+      <div class="col-md-3 d-md-none " style="text-align:center">
+        <a href="./index-fr.html" class="d-md-none">
+          <img src="./images/mockLogo2.png" style="height:120px; width: auto;"
+            alt="Sunny side of the Moon: Un logo comportant une lune qui brille" title="La face ensoleilée de la lune" />
+        </a>
+      </div>
+
+      <div class="col-md-2  nav-link " style="text-align:center">
+        <a class="cus-nav-style" href="./activity-packages-fr.html#packages">forfaits</a>
+      </div>
+
+      <div class="col-md-2 nav-link" style="text-align:center">
+        <a href="./activity-packages-fr.html#activities" class="cus-nav-style">activités</a>
+      </div>
+
+      <div class="col-md-4 d-none d-md-block" style="text-align:center">
+        <a href="./index-fr.html">
+          <img src="./images/mockLogo2.png" style="height:120px; width: auto;"
+            alt="Sunny side of the Moon: Un logo comportant une lune qui brille" title="La face ensoleilée de la lune" />
+        </a>
+      </div>
+
+      <div class="col-md-1 nav-link" style="text-align:center">
+        <a href="./FAQ-fr.html#about-us" class="cus-nav-style">qui sommes-nous</a>
+      </div>
+
+      <div class="col-md-1 nav-link" style="text-align:center">
+        <a href="./FAQ-fr.html#faqs" class="cus-nav-style">faqs</a>
+      </div>
+
+      <div class="col-md py-4 d-flex justify-content-center">
+        <select id="lang" onchange="countryHandler(this.value)" class="form-select" style="width: 50%;">
+            <option value="./fr/pagename-fr">Français</option>
+          <option value="../pagename"> English</option>
+          
+        </select>
+      </div>
+
+    </div>
+  </nav>
+  <!--NAVBAR END-->
+
+
+
+
+  <!-- Footer -->
+  <footer class="bg-dark text-center text-white" style="border-top:5px solid rgb(198, 179, 179);">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!-- Section: Social media -->
+      <nav class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/Sunny-Side-of-the-Moon-103395659035464" role="button"><i class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/SunnySideotMoon" role="button"><i class="fab fa-twitter"></i></a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light btn-floating m-1" href="www.google.com" role="button"><i class="fab fa-google"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/sunnysideofthemoonofficial/" role="button"><i class="fab fa-instagram"></i></a>
+
+        <!-- Linkedin -->
+        <a class="btn btn-outline-light btn-floating m-1" href="www.linkedin.com" role="button"><i class="fab fa-linkedin-in"></i></a>
+
+        <!-- Github -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/SpicyRiceTea/SSotM" role="button"><i class="fab fa-github"></i></a>
+      </nav>
+      <!-- Section: Social media -->
+
+      <!-- Section: Form -->
+      <aside id="newsletter">
+        <form>
+          <!--Grid row-->
+          <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-auto">
+              <p class="pt-2">
+                <strong>Inscrivez-vous à notre infolettre</strong>
+              </p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-5 col-12">
+              <!-- Email input -->
+              <div class="form-outline form-white mb-4">
+                <input type="email" id="form5Example21" class="form-control" />
+                <label class="form-label" for="form5Example21">Adresse courriel</label>
+              </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-auto">
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-outline-light mb-4">
+                S’inscrire
+              </button>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </form>
+      </aside>
+      <!-- Section: Form -->
+
+      <!-- Section: Text -->
+      <aside class="mb-4">
+        <p>
+          Sunny Side of the Moon&trade; (SSotM)&trade;; est une agence de voyage travaillant en tandem avec
+          SpaceY&trade;, Blue Oranges&trade;, et respectant les décrets du Bureau des affaires spatiales de l’ONU (UNOV). En réservant un forfait avec nous, vous acceptez de respecter les  <a class="text-white"
+           href="">politiques d'entreprise </a> de nos partenaires ainsi que les <a class="text-white" href="">résolutions de l'UNOV</a> associés aux voyages dans l'espace et aux visites lunaires.
+        </p>
+      </aside>
+      <!-- Section: Text -->
+
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Résaux Sociaux</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="https://www.facebook.com/Sunny-Side-of-the-Moon-103395659035464" class="text-white">Facebook</a>
+              </li>
+              <li>
+                <a href="https://twitter.com/SunnySideotMoon" class="text-white">Twitter</a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/sunnysideofthemoonofficial/" class="text-white">Instagram</a>
+              </li>
+              <li>
+                <a href="www.linkedin.com" class="text-white">LinkedIn</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Navigation</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="./splash-fr.html" class="text-white">Page d’accueil</a>
+              </li>
+              <li>
+                <a href="./activity-package-fr.html#activities" class="text-white">Activités</a>
+              </li>
+              <li>
+                <a href="./activity-packages-fr.html#packages" class="text-white">Forfaits</a>
+              </li>
+              <li>
+                <a href="./FAQ-fr.html#about-us" class="text-white">Qui sommes-nous?</a>
+              </li>
+              <li>
+                <a href="./FAQ-fr.html#faqs" class="text-white">FAQs</a>
+              </li>
+              <li>
+                <a href="./FAQ-fr.html#contact-us" class="text-white">Nous-rejoindre</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">En Apprendre Plus</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-white">Carières</a>
+              </li>
+              <li>
+                <a href="#!" class="text-white">Politiques environnementales</a>
+              </li>
+              <li>
+                <a href="#!" class="text-white">Exigences concernant la santé</a>
+              </li>
+              <li>
+                <a href="./terms-and-conditions-fr.html" class="text-white">Termes et conditions</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Liens Utiles</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="https://www.unoosa.org" class="text-white">Le bureau des affaires spatiales de l’ONU (UNOV)</a>
+              </li>
+              <li>
+                <a href="https://www.spacex.com" class="text-white">SpaceY</a>
+              </li>
+              <li>
+                <a href="https://www.blueorigin.com/" class="text-white">Blue Oranges</a>
+              </li>
+
+            </ul>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+
+      <!-- Google Translator BEGIN-->
+      <div class="row">
+        <div class="col"></div>
+        <div class="col" id="google_translate_element" style="margin: 1.5rem 0 0 0"></div>
+        <div class="col"></div>
+    </div>
+
+    <script>// <![CDATA[
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout
+            },
+                'google_translate_element');
+        }
+    // ]]></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- Google Translate end-->
+
+
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 droit d’auteur:
+      <a class="text-white" href="./index-fr.html">SSotM.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+  <script src="https://kit.fontawesome.com/1978e00067.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+    function countryHandler(value) {
+        window.location.assign(`${value}.html`);
+    }
+  </script>
+  
+</body>
+
+</html>

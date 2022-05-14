@@ -1,0 +1,8 @@
+@charset "utf-8";
+main .row {
+    page-break-before: always;
+}
+
+@media print {
+    ol li {page-break-inside: avoid;}
+  }
