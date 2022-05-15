@@ -4,6 +4,7 @@
         AUTHOR: MITCH, EDGAR
         LAST UPDATED: MAY 02
     -->
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +19,7 @@
   <link href="./css/formB.css" rel="stylesheet">
 </head>
 
-<body style="background-image:url(./images/star-bg.jpg); background-size: 680px 455px; color:black">
+<body class="parallax" style="background-image:url(./images/star-bg.jpg); background-size: 680px 455px; color:black">
 
 
   <!--NAVBAR BEGIN-->
@@ -75,19 +76,21 @@
             <h2 class="text-center">Guest Personal Information</h2>
             <div class="col-lg-6">
               <label for="fname" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="fname" placeholder="e.g. Neil" size="20" maxlength="20"
-                required>
-              <label for="lname" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="lname" placeholder="e.g. Armstrong" size="20" maxlength="20"
-                required>
-              <label for="address" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="e.g. 742 Evergreen Terrace" size="50"
-                maxlength="50" required>
-              <label for="city" class="form-label">City</label>
-              <input type="text" class="form-control" id="city" placeholder="e.g. Saint-Louis-du-Ha! Ha!" size="20"
+              <!--added class .personal to input, remove if not used-->
+              <input type="text" class="form-control personal" id="fname" placeholder="e.g. Neil" size="20"
                 maxlength="20" required>
+              <label for="lname" class="form-label">Last Name</label>
+              <input type="text" class="form-control personal" id="lname" placeholder="e.g. Armstrong" size="20"
+                maxlength="20" required>
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control personal" id="address" placeholder="e.g. 742 Evergreen Terrace"
+                size="50" maxlength="50" required>
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control personal" id="city" placeholder="e.g. Saint-Louis-du-Ha! Ha!"
+                size="20" maxlength="20" required>
               <label for="province" class="form-label">Province / Territory</label>
-              <select class="form-select" id="province">
+              <select class="form-select personal" id="province">
+                <option></option>
                 <option value="alberta">Alberta</option>
                 <option value="british_columbia">British Columbia</option>
                 <option value="manitoba">Manitoba</option>
@@ -103,51 +106,54 @@
                 <option value="yukon">Yukon</option>
               </select>
               <label for="postal_code" class="form-label">Postal Code</label>
-              <input type="text" class="form-control" id="postal_code" placeholder="e.g. H0H 0H0" size="7" maxlength="7"
-                required>
+              <input type="text" class="form-control personal" id="postal_code" placeholder="e.g. H0H 0H0" size="7"
+                maxlength="7" required>
               <label for="email" class="form-label">Email Address</label>
-              <input type="email" class="form-control" id="email" placeholder="e.g. neil.armstrong@NASA.gov" size="40"
-                maxlength="40" required>
+              <input type="email" class="form-control personal" id="email" placeholder="e.g. neil.armstrong@NASA.gov"
+                size="40" maxlength="40" required>
               <label for="phone" class="form-label">Phone Number</label>
-              <input type="text" class="form-control" id="phone" placeholder="e.g. (555) 867-5309" size="16"
+              <input type="text" class="form-control personal" id="phone" placeholder="e.g. (555) 867-5309" size="16"
                 maxlength="16" required>
               <br />
               <h2 class="text-center">Hotel Reservation Information</h2>
               <h6>Packages</h6>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="sunny-package" checked>
-                <label class="form-check-label" for="sunny-package">
-                  Sunny Package
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="sunny-plus-package">
-                <label class="form-check-label" for="sunny-plus-package">
-                  Sunny Plus Package
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="sunny-extreme-package">
-                <label class="form-check-label" for="sunny-extreme-package">
-                  Sunny Extreme Package
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="sunny-honeymoon-package">
-                <label class="form-check-label" for="sunny-honeymoon-package">
-                  Sunny HoneyMoon Package
-                </label>
-              </div>
+              <fieldset id="packages">
+                <div class="form-check">
+                  <input class="form-check-input pckg" type="radio" name="packages" id="sunny-package" checked>
+                  <label class="form-check-label" for="sunny-package">
+                    Sunny Package
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input pckg" type="radio" name="packages" id="sunny-plus-package">
+                  <label class="form-check-label" for="sunny-plus-package">
+                    Sunny Plus Package
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input pckg" type="radio" name="packages" id="sunny-extreme-package">
+                  <label class="form-check-label" for="sunny-extreme-package">
+                    Sunny Extreme Package
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input pckg" type="radio" name="packages"
+                    id="sunny-honeymoon-package">
+                  <label class="form-check-label" for="sunny-honeymoon-package">
+                    Sunny HoneyMoon Package
+                  </label>
+                </div>
+                <br />
+                <label for="length-of-stay" class="form-label">Length of Stay (excluding travel time)</label>
+                <select class="form-select pckg" id="length-of-stay">
+                  <option value="4-days">4 Days</option>
+                  <option value="8-days">8 Days</option>
+                  <option value="15-days">15 Days</option>
+                  <option value="22-days">22 Days</option>
+                </select>
+              </fieldset>
               <br />
-              <label for="length-of-stay" class="form-label">Length of Stay (excluding travel time)</label>
-              <select class="form-select" id="length-of-stay">
-                <option value="4-days">4 Days</option>
-                <option value="8-days">8 Days</option>
-                <option value="15-days">15 Days</option>
-                <option value="22-days">22 Days</option>
-              </select>
-              <br />
-              <label for="number-of-people" class="form-label">Number of People</label>
+              <!--              <label for="number-of-people" class="form-label">Number of People</label>
               <select class="form-select" id="number-of-people">
                 <option value="1">1</option>
                 <option selected value="2">2</option>
@@ -156,17 +162,17 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
               </select>
-              <br />
+              <br />-->
               <label for="number-of-adults" class="form-label">Number of Adults</label>
               <select class="form-select" id="number-of-adults">
-                <option value="1">1</option>
-                <option selected value="2">2</option>
+                <option selected value="1">1</option>
+                <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
               </select>
-              <label for="number-of-children" class="form-label">Number of children</label>
+              <label for="number-of-children" class="form-label">Number of Children</label>
               <select class="form-select" id="number-of-children">
                 <option selected value="0">0</option>
                 <option value="1">1</option>
@@ -176,49 +182,51 @@
               </select>
               <br />
               <h6>Payment Method - $5,000 deposit per person required</h6>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="visa" checked>
-                <label class="form-check-label" for="visa">
-                  Visa
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="mastercard">
-                <label class="form-check-label" for="mastercard">
-                  Master Card
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="americanexpress">
-                <label class="form-check-label" for="americanexpress">
-                  American Express
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="bitcoin">
-                <label class="form-check-label" for="bitcoin">
-                  Bitcoin
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="etherium">
-                <label class="form-check-label" for="etherium">
-                  Etherium
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="dogecoin">
-                <label class="form-check-label" for="dogecoin">
-                  Dogecoin
-                </label>
-              </div>
-              <label for="card-wallet" class="form-label">Credit Card or Coin Wallet Number </label>
-              <input type="text" class="form-control" id="card-wallet" placeholder="Card or Wallet Number" size="35"
-                maxlength="35" required>
-              <label for="cvs" class="form-label">CVS</label>
-              <input type="text" class="form-control" id="phone" placeholder="The 3-4 digits on the back of your card"
-                size="4" maxlength="4">
-              <br />
+              <fieldset id="payment-method">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="payment-method" id="visa" checked>
+                  <label class="form-check-label" for="visa">
+                    Visa
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="payment-method" id="mastercard">
+                  <label class="form-check-label" for="mastercard">
+                    Master Card
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="payment-method" id="americanexpress">
+                  <label class="form-check-label" for="americanexpress">
+                    American Express
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="payment-method" id="bitcoin">
+                  <label class="form-check-label" for="bitcoin">
+                    Bitcoin
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="payment-method" id="etherium">
+                  <label class="form-check-label" for="etherium">
+                    Etherium
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="payment-method" id="dogecoin">
+                  <label class="form-check-label" for="dogecoin">
+                    Dogecoin
+                  </label>
+                </div>
+                <label for="card-wallet" class="form-label">Credit Card or Coin Wallet Number </label>
+                <input type="text" class="form-control" id="card-wallet" placeholder="Card or Wallet Number" size="35"
+                  maxlength="35" required>
+                <label for="cvs" class="form-label">CVS</label>
+                <input type="text" class="form-control" id="phone" placeholder="The 3-4 digits on the back of your card"
+                  size="4" maxlength="4">
+                <br />
+              </fieldset>
               <h6> Dietary Restrictions</h6>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="vegetarian">
@@ -264,8 +272,7 @@
                 </label>
               </div>
               <br />
-              <input type="submit" id="submit_form" class="btn btn-outline-light" 
-                role="button">
+              <input type="submit" id="submit_form" class="btn btn-outline-light" role="button">
             </div>
           </div>
         </div>
@@ -493,6 +500,7 @@
       window.location.assign(`${value}.html`);
     }
   </script>
+  <script src="./scripts/localStorage.js"></script>
 </body>
 
 </html>

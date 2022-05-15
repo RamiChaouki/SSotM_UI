@@ -300,10 +300,27 @@
                 <input class="form-control" id="floatingInput1" required="required">
                 <label class="text-dark" for="floatingInput1">Name</label>
               </div>
+              <!--preferred communication-->
+              <div>
+                <p style="text-align: center;">Preferred Contact Method</p>
+              </div>  
+              <div class="input-floating mb-3">
+                <input type="radio" class="btn-check" name="options" id="phone" autocomplete="off" checked>
+                <label class="btn btn-secondary" for="phone">Phone</label>
+                
+                <input type="radio" class="btn-check" name="options" id="email" autocomplete="off">
+                <label class="btn btn-secondary" for="email">Email</label>
+              </div>
+              <!--phone number-->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput2"
+                  maxlength="16" required="required">
+                <label class="text-dark" for="floatingInput2" >Phone Number</label>
+              </div>
               <!--email-->
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput2" required="required">
-                <label class="text-dark" for="floatingInput2">Email address</label>
+                <input type="text" class="form-control" id="floatingInput3" required="required">
+                <label class="text-dark" for="floatingInput3">Email address</label>
               </div>
               <!-- reason -->
               <div class="form-floating">
