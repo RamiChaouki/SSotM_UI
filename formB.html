@@ -21,8 +21,12 @@
   <!--Custom CSS-->
   <link href="./css/formB.css" rel="stylesheet">
 
+  <!-- Link to jQuery -->
+  <script src="scripts/jQuery 3.6.0.js"></script>
+
   <!-- link to external script -->
   <script src="scripts/formB.js"></script>
+  
 </head>
 
 <body class="parallax" style="background-image:url(./images/star-bg.jpg); background-size: 680px 455px; color:black">
@@ -64,7 +68,7 @@
 
       <div class="col-md py-4 d-flex justify-content-center">
         <select id="lang" onchange="countryHandler(this.value)" class="form-select" style="width: 50%;">
-          <option value=""> English</option>
+          <option value="">English</option>
           <option value="./fr/formB-fr">Français</option>
         </select>
       </div>
@@ -197,7 +201,7 @@
               </div>
               <br>
               <label for="number-of-adults" class="form-label">Number of Adults</label>
-              <select class="form-select" id="number-of-adults" onchange="addAdultInfo(this);">
+              <select class="form-select" id="number-of-adults" onchange="addInfo(this);">
                 <option selected value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -206,8 +210,9 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
               </select>
+              <br>
               <label for="number-of-children" class="form-label">Number of Children</label>
-              <select class="form-select" id="number-of-children">
+              <select class="form-select" id="number-of-children" onchange="addInfo(this);">
                 <option selected value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -223,9 +228,9 @@
               <h6><i>$5,000 deposit per person required</i></h6>
               <br>
               <h6>Payment Methods</h6>
-              <fieldset id="payment-method">
+              <fieldset id="payment-method" onclick = "addPaymentInfo(this);">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="payment-method" id="visa" checked>
+                  <input class="form-check-input" type="radio" name="payment-method" id="visa">
                   <label class="form-check-label" for="visa">
                     Visa
                   </label>
@@ -260,14 +265,13 @@
                     Dogecoin
                   </label>
                 </div>
-                <label for="card-wallet" class="form-label">Credit Card or Coin Wallet Number </label>
-                <input type="text" class="form-control" id="card-wallet" placeholder="Card or Wallet Number" size="35"
-                  maxlength="35" required>
-                <label for="cvs" class="form-label">CVS</label>
-                <input type="text" class="form-control" id="phone" placeholder="The 3-4 digits on the back of your card"
-                  size="4" maxlength="4">
-                <br />
               </fieldset>
+                <br>
+                <div id="targetDiv_payment">
+                </div>
+                
+              
+              <br />
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="termsAndConditions" required>
                 <label class="form-check-label" for="termsAndConditions">
