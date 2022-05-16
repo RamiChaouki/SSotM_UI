@@ -1,6 +1,5 @@
-function submitForm(ev) {
-    ev.preventDefault();
-    // form new submission
+
+function submitForm() {
 
     //variables for grabbing the selection values
     var province = document.getElementById("province");
@@ -8,7 +7,7 @@ function submitForm(ev) {
     var adultNum = document.getElementById('number-of-adults');
     var adultNumValue = adultNum.options[adultNum.selectedIndex].value;
     var childNum = document.getElementById('number-of-children');
-    var adultNumValue = childNum.options[childNum.selectedIndex].value;
+    var childNumValue = childNum.options[childNum.selectedIndex].value;
     var lenOfStay = document.getElementById('length-of-stay');
     var lenOfStayValue = lenOfStay.options[lenOfStay.selectedIndex].value;
 
@@ -41,8 +40,13 @@ function submitForm(ev) {
         "additional-passengers": readAdditionalPassengers(adultNumValue, childNumValue),
         "payment-method": document.querySelector("input[name='payment-method']:checked").id,
     }
+    debugger;
+    console.log(newSubmission);
+    debugger;
+    window.alert('hi');
 
-
+}
+/*    
     // reads the fields of form for Adults and Children into an array of objects called additionalPassengers
     function readAdditionalPassengers(adultNumValue, childNumValue) {
         const additionalPassengers = [];
@@ -81,7 +85,7 @@ function submitForm(ev) {
 
 
 
-localStorage.setItem('submittedForm', JSON.Stringify(newSubmission));
+//localStorage.setItem('submittedForm', JSON.Stringify(newSubmission));
 //----------------------------------------------------------------------
 // Storing data:
 // const myObj = {name: "John", age: 31, city: "New York"};
@@ -100,3 +104,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("submit_form").addEventListener("click", submitForm);
 })
 
+*/
