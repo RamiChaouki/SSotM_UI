@@ -79,7 +79,7 @@ function addAdultInfo(dropDownList) {
  */
 function addInfo(dropDownList) {
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
-    console.log(lang)
+    // console.log(lang)
     // list of boxes to be created per adult
     const boxes = ['fname', 'lname', 'age', 'allergen'];
     let labelsText;
@@ -169,47 +169,76 @@ function addInfo(dropDownList) {
 
 
 function addPaymentInfo(paymentList) {
+    // Page language detection
+    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
+    // text to be presented accodrding to detected language
+
+    const stringList_json = `{
+        "english": {
+            "cardNumber": "Credit Card Number",
+            "cardHolder": "Card holder",
+            "CVS": "The 3-4 digits on the back of your card",
+            "expiryDate": "Expiry Date",
+            "cryptoWallet": "Crypto wallet address"
+
+            },
+        "french": {
+            "cardNumber": "Numéro de Carte de Crédit",
+            "cardHolder": "Titulaire de la carte",
+            "CVS": "Les 3-4 chiffres au dos de votre carte",
+            "expiryDate": "Date d'expiration",
+            "cryptoWallet": "Adresse du portefeuille crypto"
+
+        }}`;
+
+    stringList = (lang == 'English') ? JSON.parse(stringList_json).english : JSON.parse(stringList_json).french;
+    // identify checked button from payment methods
     let payment_method = document.querySelector("input[type='radio'][name='payment-method']:checked").id;
-    console.log(payment_method);
-    let cards = ["visa", "mastercard", "americanexpress"];
+    // console.log(payment_method);
+    // identify current month (to be used as minimum in expiry date)
     let currentDate = new Date();
+    const startDate = new Date("2015-03");
+    startDate.setMonth(currentDate.getMonth());
+    startDate.setFullYear(currentDate.getFullYear());
+    // card payment methods
+    let cards = ["visa", "mastercard", "americanexpress"];
+    // if selected payment method uses cards, then show info boxes for cards to be filled
     if (cards.includes(payment_method)) {
-        if($('paymentInfo')){
-            $( "#paymentInfo" ).remove();
+        // if there is already a payment method, remove it
+        if ($('paymentInfo')) {
+            $("#paymentInfo").remove();
         }
+        // add info boxes rto be filled
         $('#targetDiv_payment').append(`
         <div id="paymentInfo">
 
-        <label for="card-number" class="form-label">Credit Card Number</label>
-        <input type="text" class="form-control" id="card-number" placeholder="Card Number" size="35"
-          maxlength="16" required>
+        <label for="card-number" class="form-label">${stringList.cardNumber}</label>
+        <input type="text" class="form-control" id="card-number" size="35" maxlength="16" required>
           <br>
-        <label for="card-holder" class="form-label">Name of card holder</label>
-        <input type="text" class="form-control" id="card-holder" placeholder="Name of holder as it appears on the card"
-          size="35" maxlength="100">
+        <label for="card-holder" class="form-label">${stringList.cardHolder}</label>
+        <input type="text" class="form-control" id="card-holder" size="35" maxlength="100">
           <br>
         <label for="cvs" class="form-label">CVS</label>
-        <input type="text" class="form-control" id="cvs" placeholder="The 3-4 digits on the back of your card"
-          size="4" maxlength="4">
+        <input type="text" class="form-control" id="cvs" placeholder=${stringList.CVS} size="4" maxlength="4">
           <br>
-          <label for="expiry-date">Expiry Date</label>
-          <input type="month" id="expiry-date" name="expiry-date" min=${currentDate} value=${currentDate}>
+          <label for="expiry-date">${stringList.expiryDate}</label>
+          <input type="month" id="expiry-date" name="expiry-date" min=${startDate} value='yyyy-MM'>
 
           </div>
 `);
     }
- else {
-    
-    if($('paymentInfo')){
-        $( "#paymentInfo" ).remove();
-    }
-            
+    // if selected payment method uses crypto, show info box to inpu wallet number
+    else {
+        // if there is already a payment method, remove it
+        if ($('paymentInfo')) {
+            $("#paymentInfo").remove();
+        }
+
         $('#targetDiv_payment').append(`
         <div id="paymentInfo">
 
-        <label for="wallet-address" class="form-label">Credit Card Number </label>
-        <input type="text" class="form-control" id="wallet-address" placeholder="Card Number" size="35"
-          maxlength="35" required>
+        <label for="wallet-address" class="form-label">${stringList.cryptoWallet}</label>
+        <input type="text" class="form-control" id="wallet-address" size="35" maxlength="35" required>
           </div>
 `);
     }
