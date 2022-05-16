@@ -141,6 +141,7 @@ function addInfo(dropDownList) {
 
                 let boxInput = document.createElement('input');
                 boxInput.setAttribute('id', (newDiv_id + '_' + boxType));
+                boxInput.setAttribute('name', (newDiv_id + ' ' + boxType));
                 boxInput.setAttribute('required', 'required');
                 boxInput.setAttribute('class', 'form-control');
 
@@ -165,9 +166,12 @@ function addInfo(dropDownList) {
         }
     }
 
-}  // end function addTextField
+}  // end function addInfo()
 
-
+/**
+ * A function that adds payment info based on checked radio box
+ * @param {*} paymentList 
+ */
 function addPaymentInfo(paymentList) {
     // Page language detection
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
@@ -242,9 +246,56 @@ function addPaymentInfo(paymentList) {
           </div>
 `);
     }
-}
+} // end addPaymentInfo() function
 
-
+/*
 $(document).ready(function () {
     //  window.alert('Welcome to  website')
 });
+*/
+
+/**
+ * 
+ */
+function formValidation(ev) {
+    
+    let inputs = $('#booking_form input, #booking_form input');
+    // console.log(inputs);
+    let emptyFields = [];
+
+    for(let index = 0; index < inputs.length; index++) {
+        // console.log(!inputs[index].value);
+        if(!inputs[index].value) {
+            emptyFields.push(inputs[index])
+        }
+    }
+
+    console.log(emptyFields.length);
+
+    let excludeIDs = ['allergies-text', 'other-diets', 'submit_form'];
+    if(emptyFields.length > 0) {
+        ev.preventDefault();
+        $('#warnings').addClass("alert alert-danger col-md-4 offset-md-4 text-center");
+        for(let emptyElement of emptyFields) {
+
+            console.log(emptyElement.id);
+            if(excludeIDs.includes(emptyElement.id)) {
+                continue;
+            }
+            
+            // $('#warnings').append(`<p>${isEmpty} is a required field</p>`);
+            if(emptyElement.name){
+                $('#warnings').append(`<p>${emptyElement.name} is a required field</p>`);
+            } else if(emptyElement.labels[0]){
+                $('#warnings').append(`<p>${emptyElement.labels[0].innerHTML} is a required field</p>`);
+            } else {
+                $('#warnings').append(`<p>${isEmpty} is a required field</p>`);
+        }
+            
+        }
+        document.querySelector('#warnings').scrollIntoView(true);
+    }
+    
+}
+
+  
