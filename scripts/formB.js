@@ -277,7 +277,7 @@ function formValidation(ev) {
     let excludeIDs = ['allergies-text', 'other-diets', 'submit_form'];
     if(emptyFields.length > 0) {
         ev.preventDefault();
-        $('#warnings').addClass("alert alert-danger col-md-4 offset-md-4 text-center");
+        $('#warnings').addClass("text-warning text-center");
         for(let emptyElement of emptyFields) {
 
             // console.log(emptyElement.id);
@@ -303,29 +303,44 @@ function formValidation(ev) {
 }
 
 function FieldsValidator(){
-    let applicantName = [$('#fname'), $('#lname')]
-    // console.log(applicantName);
-    // let adults = $("#targetDiv_adult div"); 
-    // console.log(adults);
-    // let adultNames = [];
-    // for(div of adults) {
-    //    let elements = div.getElementsByTagName('input').slice(0,2);
-    //    for(let e in elements) {
-    //     adultNames.push(e);
-    //    }
-    // }
-    // console.log(adultNames);
-    // let childNames = $("#targetDiv_children").children("div").slice(0,2); 
-    // let alphtext = applicantName.concat(adultNames, childNames);
-    // console.log(alphtext);
+    // validate name fileds
+    let applicantName = [$('#fname'), $('#lname')];
+    let adultNames = getFNLN("#targetDiv_adult div");
+    let childNames = getFNLN("#targetDiv_children div");
+    namesInputList = applicantName.concat(adultNames, childNames);
+    console.log(namesInputList);
+
+    for(element of namesInputList) {
+        // console.log(element)
+        // console.log(alphaTextValidator(element))
+        if(element.val()){
+        if(!alphaTextValidator(element)){            
+            let par = document.createElement('p');
+            par.innerHTML = 'This field should include letters only';
+            par.style.color = 'red';
+            let parentDiv = element.parent();
+            // element.insertAdjacentElement('beforebegin', par)
+            $( "<p class = 'text-warning'>this field should include letters</p>" ).insertBefore(element);
+        }
+    }
+}
 }
 
-
+function getFNLN(targetDiv) {
+    let divs = $(targetDiv); 
+    let namesInput = [];
+    for(div of divs) {
+       let elements = div.getElementsByTagName('input');
+       for(let e = 0; e < 2; e++) {
+        namesInput.push(elements[e]);
+       }
+    }
+    return namesInput;
+}
 
 function alphaTextValidator(input) {
-    let regex = new RegExp('^[A-zÀ-ú]+', 'i') 
-    console.log(regex);
-    return regex.test(input.value);
+    let regex = new RegExp('^[A-zÀ-ú]+$', 'g');
+    return regex.test(input.val());
 }
 
 function addressValidator(input){
