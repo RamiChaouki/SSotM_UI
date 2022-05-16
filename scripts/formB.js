@@ -222,8 +222,8 @@ function addPaymentInfo(paymentList) {
         <label for="card-holder" class="form-label">${stringList.cardHolder}</label>
         <input type="text" class="form-control" id="card-holder" size="35" maxlength="100">
           <br>
-        <label for="cvs" class="form-label">CVS</label>
-        <input type="text" class="form-control" id="cvs" placeholder=${stringList.CVS} size="4" maxlength="4">
+        <label for="cvs" class="form-label">CVS <sup class="bi bi-info-lg" title= ${stringList.CVS}>i</sup></label>
+        <input type="text" class="form-control" id="cvs" size="4" maxlength="4">
           <br>
           <label for="expiry-date">${stringList.expiryDate}</label>
           <input type="month" id="expiry-date" name="expiry-date" min=${startDate} value='yyyy-MM'>
@@ -255,11 +255,11 @@ $(document).ready(function () {
 */
 
 /**
- * 
+ * A function that validates the booking form before submission
  */
 function formValidation(ev) {
     
-    let inputs = $('#booking_form input, #booking_form input');
+    let inputs = $('#booking_form input, #booking_form select');
     // console.log(inputs);
     let emptyFields = [];
 
@@ -270,15 +270,17 @@ function formValidation(ev) {
         }
     }
 
-    console.log(emptyFields.length);
+    // console.log(emptyFields.length);
 
+    FieldsValidator();
+    
     let excludeIDs = ['allergies-text', 'other-diets', 'submit_form'];
     if(emptyFields.length > 0) {
         ev.preventDefault();
         $('#warnings').addClass("alert alert-danger col-md-4 offset-md-4 text-center");
         for(let emptyElement of emptyFields) {
 
-            console.log(emptyElement.id);
+            // console.log(emptyElement.id);
             if(excludeIDs.includes(emptyElement.id)) {
                 continue;
             }
@@ -295,7 +297,63 @@ function formValidation(ev) {
         }
         document.querySelector('#warnings').scrollIntoView(true);
     }
+
+    
     
 }
 
-  
+function FieldsValidator(){
+    let applicantName = [$('#fname'), $('#lname')]
+    // console.log(applicantName);
+    // let adults = $("#targetDiv_adult div"); 
+    // console.log(adults);
+    // let adultNames = [];
+    // for(div of adults) {
+    //    let elements = div.getElementsByTagName('input').slice(0,2);
+    //    for(let e in elements) {
+    //     adultNames.push(e);
+    //    }
+    // }
+    // console.log(adultNames);
+    // let childNames = $("#targetDiv_children").children("div").slice(0,2); 
+    // let alphtext = applicantName.concat(adultNames, childNames);
+    // console.log(alphtext);
+}
+
+
+
+function alphaTextValidator(input) {
+    let regex = new RegExp('^[A-zÀ-ú]+', 'i') 
+    console.log(regex);
+    return regex.test(input.value);
+}
+
+function addressValidator(input){
+    let regex = new RegExp('^[0-9]+\s[A-zÀ-ú\-\s\d]+', 'i') 
+    console.log(regex);
+    return regex.test(input.value);
+}
+
+function emailValidator(input){
+    let regex = new RegExp('^\w.+@[a-zA-Z_].+?\.[a-zA-Z]{2,3}$', 'i') 
+    console.log(regex);
+    return regex.test(input.value);
+}
+
+function postalCodeValidator(input) {
+    let regex = new RegExp('^[A-z][0-9][A-z]\s?[0-9][A-z][0-9]', 'i') 
+    console.log(regex);
+    return regex.test(input.value);
+}
+
+function phoneValidator(input) {
+    let regex = new RegExp('\(?[0-9]+\)?\-?\s?[0-9]+\-?\s?[0-9]+', 'i') 
+    console.log(regex);
+    return regex.test(input.value);
+}
+
+function cardNumberValidator(input){
+    let regex = new RegExp('^\d{16}', 'i') 
+    console.log(regex);
+    return regex.test(input.value);
+}
