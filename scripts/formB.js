@@ -169,7 +169,7 @@ function addInfo(dropDownList) {
 }  // end function addInfo()
 
 /**
- * A function that adds payment info based on checked radio box
+ * A function that adds payment info based on checked radio box (french and english)
  * @param {*} paymentList 
  */
 function addPaymentInfo(paymentList) {
@@ -258,7 +258,21 @@ $(document).ready(function () {
  * A function that validates the booking form before submission
  */
 function formValidation(ev) {
+
+    $('#warnings').empty();
+    formFillValidator(ev);
+    FieldsValidator();
     
+}
+
+/**
+ * A function that validates that all elements in the form are filled
+ * @param {event} ev 
+ */
+function formFillValidator(ev) {
+    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
+    warningString = (lang == 'English') ? 'is a required field' : 'est un champ obligatoire';
+
     let inputs = $('#booking_form input, #booking_form select');
     // console.log(inputs);
     let emptyFields = [];
@@ -270,10 +284,6 @@ function formValidation(ev) {
         }
     }
 
-    // console.log(emptyFields.length);
-
-    FieldsValidator();
-    
     let excludeIDs = ['allergies-text', 'other-diets', 'submit_form'];
     if(emptyFields.length > 0) {
         ev.preventDefault();
@@ -287,66 +297,94 @@ function formValidation(ev) {
             
             // $('#warnings').append(`<p>${isEmpty} is a required field</p>`);
             if(emptyElement.name){
-                $('#warnings').append(`<p>${emptyElement.name} is a required field</p>`);
+                $('#warnings').append(`<p>${emptyElement.name} ${warningString}</p>`);
             } else if(emptyElement.labels[0]){
-                $('#warnings').append(`<p>${emptyElement.labels[0].innerHTML} is a required field</p>`);
+                $('#warnings').append(`<p>${emptyElement.labels[0].innerHTML} ${warningString}</p>`);
             } else {
-                $('#warnings').append(`<p>${isEmpty} is a required field</p>`);
+                $('#warnings').append(`<p>${emptyElement.id} ${warningString}</p>`);
         }
             
         }
         document.querySelector('#warnings').scrollIntoView(true);
     }
-
-    
-    
 }
 
+/**
+ * A function that validate that the inputs in different fields are filled properly (regex-based)
+ * It calls other functions that validate different types of fields  (name, address, numerical...)
+ */
 function FieldsValidator(){
     // validate name fileds
     let applicantName = [$('#fname'), $('#lname')];
-    let adultNames = getFNLN("#targetDiv_adult div");
+    let adultNames =  getFNLN("#targetDiv_adult div");
     let childNames = getFNLN("#targetDiv_children div");
     namesInputList = applicantName.concat(adultNames, childNames);
-    console.log(namesInputList);
+    alphaTextValidator(namesInputList);
 
-    for(element of namesInputList) {
-        // console.log(element)
-        // console.log(alphaTextValidator(element))
+
+}
+
+function getFNLN(targetDiv) {
+    // let divs = $(targetDiv).children().filter('input'); 
+    let divs = $(targetDiv)
+    // console.log(divs)
+    let namesInput = [];
+    for(div of divs) {
+    let elements = $(div).children('input');
+    //    console.log(elements)
+       for(let e = 0; e < 2; e++) {
+        namesInput.push($(elements[e]));
+       }
+    //    console.log(namesInput)
+    }
+    return namesInput;
+}
+
+function alphaTextValidator(inputList) {
+    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
+    warningString = (lang == 'English') ? 'This field should include letters only (accents accepted)' : 'Ce champ ne doit contenir que des lettres (accents acceptés)';
+
+    let regex = new RegExp('^[A-zÀ-ú]+$', 'g');
+    for(element of inputList) {
+        // let parentDiv = element.parent();
+        // console.log(parentDiv)
+        // console.log(element.prev().prop('tagName').toLowerCase())
         if(element.val()){
-        if(!alphaTextValidator(element)){            
-            let par = document.createElement('p');
-            par.innerHTML = 'This field should include letters only';
-            par.style.color = 'red';
-            let parentDiv = element.parent();
+            // console.log(true)
+        if(!regex.test(element.val())){
+            if(element.prev().prop('tagName').toLowerCase() != 'p') {
+            // let par = document.createElement('p');
+            // par.innerHTML = 'This field should include letters only';
+            // par.style.color = 'red';
+            
             // element.insertAdjacentElement('beforebegin', par)
-            $( "<p class = 'text-warning'>this field should include letters</p>" ).insertBefore(element);
+            $( `<p class='text-warning'>${warningString}</p>` ).insertBefore(element);
+            } 
+        } else if(element.prev().prop('tagName').toLowerCase() == 'p') {
+            element.prev().detach(); 
         }
     }
 }
 }
 
-function getFNLN(targetDiv) {
-    let divs = $(targetDiv); 
-    let namesInput = [];
-    for(div of divs) {
-       let elements = div.getElementsByTagName('input');
-       for(let e = 0; e < 2; e++) {
-        namesInput.push(elements[e]);
-       }
+function addressValidator(inputList){
+    let regex = new RegExp('^[0-9]+\s?[A-zÀ-ú\-\s\d]+', 'i') 
+    for(element of inputList) {
+        let parentDiv = element.parent();
+        console.log(parentDiv)
+        console.log(element.prev().prop('tagName').toLowerCase())
+        if(element.val()){
+            // console.log(true)
+        if(!regex.test(element.val())){
+            if(element.prev().prop('tagName').toLowerCase() != 'p') {
+            $( "<p class='text-warning'>The address format you entered is invalid</p>" ).insertBefore(element);
+            $( "<p class='text-warning'>(123 street name, or 1-123 streat name)</p>" ).insertBefore(element);
+            } 
+        } else if(element.prev().prop('tagName').toLowerCase() == 'p'){
+            element.prev().detach(); 
+        }
     }
-    return namesInput;
 }
-
-function alphaTextValidator(input) {
-    let regex = new RegExp('^[A-zÀ-ú]+$', 'g');
-    return regex.test(input.val());
-}
-
-function addressValidator(input){
-    let regex = new RegExp('^[0-9]+\s[A-zÀ-ú\-\s\d]+', 'i') 
-    console.log(regex);
-    return regex.test(input.value);
 }
 
 function emailValidator(input){
