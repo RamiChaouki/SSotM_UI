@@ -1,6 +1,6 @@
 
 function submitForm() {
-
+    debugger;
     //variables for grabbing the selection values
     var province = document.getElementById("province");
     var provinceValue = province.options[province.selectedIndex].value;
@@ -19,6 +19,34 @@ function submitForm() {
         dietary_restrictions[index] = i.id;
         index++;
     };
+
+
+    function readAdditionalPassengers(adultNumValue, childNumValue) {
+        debugger;
+        const additionalPassengers = [];
+        let aNumber = parseInt(adultNumValue);
+        let cNumber = parseInt(childNumValue);
+        for (let i = 0; i < aNumber; i++) {
+            additionalPassengers.push = {
+                "adult_num" : toString(i + 1),
+                "adult_fn" : document.getElementById("Adult_fname").value,
+                "adult_ln" : document.getElementById("Adult" + toString(i + 1) + "_lname").value,
+                "adult_age" : document.getElementById('Adult' + toString(i + 1) + '_age').value,
+                "adult_allergen": document.getElementById('Adult' + toString(i + 1) + '_allergen').value,
+            }
+        }
+        for (let j = 0 + aNumber; j < cNumber + aNumber; j++) {
+            additionalPassengers.push = {
+                child_num : toString(j + 1 - aNumber),
+                child_fn: document.getElementById('child' + toString(j + 1 - aNumber) + '_fn').value,
+                child_ln: document.getElementById('child' + toString(j + 1 - aNumber) + '_ln').value,
+                child_age: document.getElementById('child' + toString(j + 1 - aNumber) + '_age').value,
+                child_allergen: document.getElementById('child' + toString(j + 1 - aNumber) + '_allergen').value,
+            }
+        }
+        // return the array
+        return (additionalPassengers);
+    }
 
     // new form submission object - takes all non-changing text, radio and selection fields
     const newSubmission = {
