@@ -43,8 +43,8 @@
 
       <div class="col-lg py-4 d-flex justify-content-center">
         <select id="lang" onchange="countryHandler(this.value)" class="form-select" style="width: 50%;">
-          <option value="./pagename"> English</option>
-          <option value="./fr/pagename-fr">Français</option>
+          <option id="english" value=""> English</option>
+          <option id="francais" value="">Français</option>
         </select>
       </div>
 
