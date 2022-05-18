@@ -1,3 +1,6 @@
+// AUTHOR: Ali, Rami, Dmitry
+// LAST UPDATED: MAY 18, 2022
+
 var p = new Promise((resolve, reject) => {
     
     $("body").prepend("<nav id='ajax'></nav>");

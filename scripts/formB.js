@@ -1,3 +1,6 @@
+// AUTHOR: Ali, Rami, Dmitry
+// LAST UPDATED: MAY 18, 2022
+
 // Java Script for formB page
 
 /**
@@ -69,11 +72,23 @@ function addInfo(dropDownList) {
                 let boxInput = document.createElement('input');
                 boxInput.setAttribute('id', (newDiv_id + '_' + boxType));
                 boxInput.setAttribute('name', (newDiv_id + ' ' + boxType));
-                boxInput.setAttribute('required', 'required');
+                // boxInput.setAttribute('required', 'required');
                 boxInput.setAttribute('class', 'form-control');
 
                 (boxType == 'age') ? boxInput.setAttribute('type', 'number') : boxInput.setAttribute('type', 'text');
                 // boxInput.setAttribute('size', '20');
+                if (boxType == 'age') {
+                    console.log($(boxInput))
+                    if (target == 'Adult') {
+                        $(boxInput).addClass('adult_age');
+                    } else {
+                        $(boxInput).addClass('child_age');
+                    }
+                }
+
+                if (boxType == 'allergen') {
+                    $(boxInput).addClass('allergen-text');
+                }
 
                 newDiv.appendChild(boxLabel);
                 newDiv.appendChild(boxInput);
@@ -182,17 +197,6 @@ $(document).ready(function () {
 */
 
 /**
- * A function that validates the booking form before submission
- */
-function formValidation(ev) {
-
-    $('#warnings').empty();
-    formFillValidator(ev);
-    FieldsValidator();
-
-}
-
-/**
  * A function that validates that all elements in the form are filled
  * @param {event} ev 
  */
@@ -200,53 +204,79 @@ function formFillValidator(ev) {
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
     warningString = (lang == 'English') ? 'is a required field' : 'est un champ obligatoire';
 
-    let inputs = $('#booking_form input, #booking_form select');
+    let inputs = $('#booking_form input, #booking_form select, #booking_form fieldset');
     // console.log(inputs);
     let emptyFields = [];
 
+    let excludeIDs = ['allergies-text', 'other-diets', 'submit_form'];
+
     for (let index = 0; index < inputs.length; index++) {
+        if (inputs[index].getAttribute("role") == 'switch') {
+            continue;
+        }
+        if (excludeIDs.includes(inputs[index].getAttribute("id"))) {
+            continue;
+        }
+        if(inputs[index].classList.contains('allergen-text')) {
+            continue;
+        }
         // console.log(!inputs[index].value);
-        if (!inputs[index].value) {
-            emptyFields.push(inputs[index])
+        if ((inputs[index].type == 'text') && !inputs[index].value) {
+            emptyFields.push(inputs[index]);
+        }
+        if ((inputs[index].type == 'select-one') && !inputs[index].value) {
+            emptyFields.push(inputs[index]);
+        }
+        // if ((inputs[index].id == 'payment-method') && !inputs[index].value) {
+        //     emptyFields.push(inputs[index]);
+        // }
+        if ((inputs[index].type == 'checkbox') && !inputs[index].checked) {
+            emptyFields.push(inputs[index]);
         }
     }
 
-    let excludeIDs = ['allergies-text', 'other-diets', 'submit_form'];
+
+    // console.log(emptyFields);
     if (emptyFields.length > 0) {
         ev.preventDefault();
-        $('#warnings').addClass("text-warning text-center");
+        // $('#warnings').addClass("text-center");
         for (let emptyElement of emptyFields) {
 
-            // console.log(emptyElement.id);
-            if (excludeIDs.includes(emptyElement.id)) {
-                continue;
-            }
+            // // console.log(emptyElement.id);
+            // if (excludeIDs.includes(emptyElement.id)) {
+            //     continue;
+            // }
 
             // $('#warnings').append(`<p>${isEmpty} is a required field</p>`);
             if (emptyElement.name) {
-                $('#warnings').append(`<p>${emptyElement.name} ${warningString}</p>`);
+                $('#warnings').append(`<p class = 'text-warning'>${emptyElement.name} ${warningString}</p>`);
             } else if (emptyElement.labels[0]) {
-                $('#warnings').append(`<p>${emptyElement.labels[0].innerHTML} ${warningString}</p>`);
+                $('#warnings').append(`<p class = 'text-warning'>${emptyElement.labels[0].innerHTML} ${warningString}</p>`);
             } else {
-                $('#warnings').append(`<p>${emptyElement.id} ${warningString}</p>`);
+                $('#warnings').append(`<p class = 'text-warning'>${emptyElement.id} ${warningString}</p>`);
             }
 
         }
+        
         document.querySelector('#warnings').scrollIntoView(true);
     }
+
+    return emptyFields.length;
 }
 
 /**
  * A function that validate that the inputs in different fields are filled properly (regex-based)
  * It calls other functions that validate different types of fields  (name, address, numerical...)
  */
-function FieldsValidator() {
+function FieldsValidator(ev) {
     // validate name fileds
     let applicantName = [$('#fname'), $('#lname')];
     let adultNames = getFNLN("#targetDiv_adult div");
     let childNames = getFNLN("#targetDiv_children div");
     namesInputList = applicantName.concat(adultNames, childNames);
+    // console.log(namesInputList);
     alphaTextValidator(namesInputList);
+
 
     let addressInputList = [$('#address')];
     // console.log(addressInputList);
@@ -260,40 +290,77 @@ function FieldsValidator() {
     // console.log(postalCodeInputList);
     postalCodeValidator(postalCodeInputList);
 
+    let phoneInputList = [$('#phone')];
+    // console.log(phoneInputList);
+    phoneValidator(phoneInputList);
+
+    let cardInputList = [$('#card-number')];
+    // console.log(cardInputList);
+    cardNumberValidator(cardInputList);
+
+    let cvsInputList = [$('#cvs')];
+    // console.log(cvsInputList);
+    cvsValidator(cvsInputList);
+
+    let adultsAgeInputList = [$('.adult_age')];
+    // console.log(cvsInputList);
+    adultAgeValidator(adultsAgeInputList);
+
+    let childrenAgeInputList = [$('.child_age')];
+    // console.log(cvsInputList);
+    childAgeValidator(childrenAgeInputList);
+
+    invalidFields = document.getElementsByClassName('text-warning');
+    console.log(invalidFields);
+    if(invalidFields.length > 0) {
+        ev.preventDefault();
+        document.querySelector('#warnings').scrollIntoView(true);
+    }
+
+    return invalidFields.length;
 
 }
 
 function getFNLN(targetDiv) {
-    // let divs = $(targetDiv).children().filter('input'); 
-    let divs = $(targetDiv)
-    // console.log(divs)
+    let divs = $(targetDiv);
     let namesInput = [];
-    for (div of divs) {
+    for (let div of divs) {
         let elements = $(div).children('input');
-        //    console.log(elements)
         for (let e = 0; e < 2; e++) {
             namesInput.push($(elements[e]));
         }
-        //    console.log(namesInput)
     }
     return namesInput;
 }
 
+/**
+ * 
+ * @param {Array} inputList 
+ */
 function alphaTextValidator(inputList) {
-    let regex = new RegExp('^[A-zÀ-ú]+$', 'g');
+
+    const regex = new RegExp('^[A-zÀ-ú]+$', 'i');
 
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
     warningString = (lang == 'English') ? 'This field should include letters only (accents accepted)' : 'Ce champ ne doit contenir que des lettres (accents acceptés)';
-    for (element of inputList) {
-        console.log(element.prop('id'))
-        console.log(regex.test(element.val()))
-        if (element.val()) {
-            if (!regex.test(element.val())) {
-                if (element.prev().prop('tagName').toLowerCase() != 'p') {
-                    $(`<p class='text-warning'>${warningString}</p>`).insertBefore(element);
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = $(element).val();
+        // console.log('element_value = ' + element_value);
+        if (element_value) {
+            let test = regex.test(element_value);
+            // console.log('test = ' + test);
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
                 }
-            } else if (element.prev().prop('tagName').toLowerCase() == 'p') {
-                element.prev().detach();
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
             }
         }
     }
@@ -301,97 +368,247 @@ function alphaTextValidator(inputList) {
 
 function addressValidator(inputList) {
     // let regex = new RegExp('^[0-9]+\s?[A-zÀ-ú\-\s\d]+$', 'i')
-    const regex = new RegExp('^[0-9]+[\-\d]*\s[\w\s]+', 'i');
-    
+    const regex = new RegExp('^[0-9]+[\w\.\s\-].*$', 'i');
+
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
     warningString = (lang == 'English') ? "The address format you entered is invalid" : "Le format d/'adresse que vous avez saisi n/'est pas valide";
-    for (element of inputList) {
-        if (element.val()) {
-            // console.log(element.val())
-            // console.log(regex.test(element.val()))
-            if (!regex.test(element.val())) {
-                if (element.prev().prop('tagName').toLowerCase() != 'p') {
-                    $(`<p class='text-warning'>${warningString} (e.g 123 street name | 1-123 streat name)</p>`).insertBefore(element);
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = $(element).val();
+        // console.log('element_value = ' + element_value);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = regex.test(element_value);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
                 }
-            } else if (element.prev().prop('tagName').toLowerCase() == 'p') {
-                element.prev().detach();
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
             }
         }
     }
 }
 
+
+function postalCodeValidator(inputList) {
+    let regex = new RegExp('^[A-z][0-9][A-z]\u0020?[0-9][A-z][0-9]$', 'i')
+
+    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
+    warningString = (lang == 'English') ? "The postal code you entered is invalid" : "Le code postale que vous avez saisi n/'est pas valide";
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = $(element).val();
+        // console.log('element_value = ' + element_value);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = regex.test(element_value);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
+                }
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
+            }
+        }
+    }
+}
+
+
 function emailValidator(inputList) {
-    let regex = new RegExp('^\w+@[a-zA-Z_].+?\.[a-zA-Z]{2,3}$', 'i')
+    let regex = new RegExp('^[A-z_0-9\.\-]+@[a-zA-Z_].+?\.[a-zA-Z]{2,3}$', 'i')
 
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
     warningString = (lang == 'English') ? "The email address you entered is invalid" : "Le format de courriel que vous avez saisi n/'est pas valide";
-    for (element of inputList) {
-        if (element.val()) {
-            // console.log(element.val())
-            // console.log(regex.test(element.val()))
-            if (!regex.test(element.val())) {
-                if (element.prev().prop('tagName').toLowerCase() != 'p') {
-                    $(`<p class='text-warning'>${warningString} (e.g first.last@example.com)</p>`).insertBefore(element);
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = $(element).val();
+        // console.log('element_value = ' + element_value);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = regex.test(element_value);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
                 }
-            } else if (element.prev().prop('tagName').toLowerCase() == 'p') {
-                element.prev().detach();
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
             }
         }
     }
 }
 
-function postalCodeValidator(inputList) {
-    let regex = new RegExp('^[A-z][0-9][A-z]\s?[0-9][A-z][0-9]', 'g')
-    
-    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
-    warningString = (lang == 'English') ? "The postal code you entered is invalid" : "Le code postale que vous avez saisi n/'est pas valide";
-    for (element of inputList) {
-        // console.log(element)
-        if (element.val()) {
-            // console.log(element.val())
-            if (!regex.test(element.val())) {
-                if (element.prev().prop('tagName').toLowerCase() != 'p') {
-                    $(`<p class='text-warning'>${warningString} (e.g A0A0A0 | A0A 0A0)</p>`).insertBefore(element);
-                }
-            } else {
-                if(element.prev().prop('tagName').toLowerCase() == 'p')
-                element.prev().detach();
-            }
-        }
-    }
-}
 
 function phoneValidator(inputList) {
-    let regex = new RegExp('\+?\(?[0-9]+\)?\-?\s?[0-9]+\-?\s?[0-9]+', 'i')
+    // let regex = new RegExp('^\u002B?\u0028?[0-9]+\u0029?\u002D?\u0020?[0-9]+\u002D?\u0020?[0-9]+', 'i')
+    let regex = new RegExp('^[0-9\+]+$', 'i')
 
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
-     warningString = (lang == 'English') ? "The phone number you entered is invalid" : "Le numero de telephone que vous avez saisi n/'est pas valide";
-    for (element of inputList) {
-        if (element.val()) {
-            if (!regex.test(element.val())) {
-                if (element.prev().prop('tagName').toLowerCase() != 'p') {
-                    $(`<p class='text-warning'>${warningString}</p>`).insertBefore(element);
+    warningString = (lang == 'English') ? "This field only accept numbers (optional [+] sign at the beginning)" : "Ce champ n'accepte que des chiffres (signe [+] facultatif au début)";
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = $(element).val();
+        // console.log('element_value = ' + element_value);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = regex.test(element_value);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
                 }
-            } else if (element.prev().prop('tagName').toLowerCase() == 'p') {
-                element.prev().detach();
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
             }
         }
     }
 }
 
 function cardNumberValidator(inputList) {
-    let regex = new RegExp('^\d{16}', 'i')
+    let regex = new RegExp('^[0-9]{16}$', 'i')
 
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
-    warningString = (lang == 'English') ? 'This field should include numbers only' : 'Ce champ ne doit contenir que des nombres';
-    for (element of inputList) {
-        if (element.val()) {
-            if (!regex.test(element.val())) {
-                if (element.prev().prop('tagName').toLowerCase() != 'p') {
-                    $(`<p class='text-warning'>${warningString}</p>`).insertBefore(element);
+    warningString = (lang == 'English') ? 'This field should include the 16 numbers on your card' : 'Ce champ doit inclure les 16 chiffres de votre carte';
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = $(element).val();
+        // console.log('element_value = ' + element_value);
+        // console.log('element_value_length = ' + element_value.length);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = regex.test(element_value);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
                 }
-            } else if (element.prev().prop('tagName').toLowerCase() == 'p') {
-                element.prev().detach();
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
+            }
+        }
+    }
+}
+
+function cvsValidator(inputList) {
+    let regex = new RegExp('^[0-9]{3,4}$', 'i')
+
+    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
+    warningString = (lang == 'English') ? 'This field should include the 3-4 numbers on the back of your card' : 'Ce champ doit inclure les 3-4 chiffres au dos de votre carte';
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = $(element).val();
+        // console.log('element_value = ' + element_value);
+        // console.log('element_value_length = ' + element_value.length);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = regex.test(element_value);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
+                }
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
+            }
+        }
+    }
+}
+
+
+function adultAgeValidator(inputList) {
+
+    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
+    warningString = (lang == 'English') ? 'Adult age should be between 18 and 65 years' : 'Ce domaine doit avoir entre 18 et 60 ans';
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = parseFloat($(element).val());
+        // console.log('element_value = ' + element_value);
+        // console.log('element_value_length = ' + element_value.length);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = (element_value >= 18 && element_value <= 65);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
+                }
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
+            }
+        }
+    }
+}
+
+function childAgeValidator(inputList) {
+
+    let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
+    warningString = (lang == 'English') ? 'Adult age should be between 18 and 65 years' : 'Ce domaine doit avoir entre 18 et 60 ans';
+
+    for (let element of $(inputList)) {
+        // console.log(element);
+        let element_value = parseFloat($(element).val());
+        // console.log('element_value = ' + element_value);
+        // console.log('element_value_length = ' + element_value.length);
+        if (element_value) {
+            // console.log('regex = ' + regex)
+            let test = (element_value >= 12 && element_value < 18);
+            // console.log('test = ' + test);
+            // console.log('match = ' + element_value.match(regex));
+            let pre_element = $(element).prev();
+            // console.log('pre_element = ' + pre_element)
+            // console.log('pre_element_tagName = ' + pre_element.prop('tagName').toLowerCase())
+            // console.log('test2 = ' + pre_element.prop('tagName').toLowerCase() == 'p');
+            if (!test) {
+                if (pre_element.prop('tagName').toLowerCase() != 'p') {
+                    $(`<p class = 'text-warning'>${warningString}</p>`).insertBefore(element);
+                }
+            } else if (pre_element.prop('tagName').toLowerCase() == 'p') {
+                $(element).prev().detach();
             }
         }
     }

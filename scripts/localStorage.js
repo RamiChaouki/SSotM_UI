@@ -1,20 +1,24 @@
 
-        // AUTHOR: Dmitry
-        // LAST UPDATED: MAY 17
+        // AUTHOR: Ali, Rami, Dmitry
+        // LAST UPDATED: MAY 18, 2022
 
 // Reads form into local storage
 const submitForm = (event) => {
     event.preventDefault();  // to stop the form submitting
-
+    // console.log(event)
     //variables for grabbing the selection values
     var province = document.getElementById('province');
     var provinceValue = province.options[province.selectedIndex].value;
+    console.log(provinceValue)
     var adultNum = document.getElementById('number-of-adults');
     var adultNumValue = adultNum.options[adultNum.selectedIndex].value;
+    console.log(adultNumValue)
     var childNum = document.getElementById('number-of-children');
     var childNumValue = childNum.options[childNum.selectedIndex].value;
+    console.log(childNumValue)
     var lenOfStay = document.getElementById('length-of-stay');
     var lenOfStayValue = lenOfStay.options[lenOfStay.selectedIndex].value;
+    console.log(lenOfStayValue)
 
     // create an array of selected dietary restrictions    
     const dietary_restrictions = [];
@@ -55,12 +59,14 @@ const submitForm = (event) => {
         return (additionalPassengers);
     }
 
-    function getPayDetails() {
-        let pay_id = document.querySelector("input[name='payment-method']:checked").id;
+    let payment_details = function () {
+        let pay_id = (document.querySelector("input[name='payment-method']:checked")) ? document.querySelector("input[name='payment-method']:checked").id : '';
         let cards = ["visa", "mastercard", "americanexpress"];
         var payDetails = {};
+        if (pay_id !== null){
         if (cards.includes(pay_id)) {
             payDetails = {
+                "pay_id": pay_id,
                 "cardNumber": document.getElementById("card-number").value,
                 "cardHolder": document.getElementById("card-holder").value,
                 "CVS": document.getElementById("cvs").value,
@@ -68,11 +74,15 @@ const submitForm = (event) => {
             }
         } else {
             payDetails = {
+                "pay_id": pay_id,
                 "cryptoWallet": document.getElementById("wallet-address").value
             }
         }
+    }
         return payDetails;
     }
+
+    console.log(document.querySelector("input[name='payment-method']:checked"));
     // new form submission object - takes all non-changing text, radio and selection fields
     const newSubmission = {
         "fname": document.getElementById("fname").value,
@@ -86,13 +96,13 @@ const submitForm = (event) => {
         "package": document.querySelector("input[name='packages']:checked").id,
         "length_of_stay": lenOfStayValue,
         "diet_restrictions": dietary_restrictions,
-        "allergen": document.getElementById("allergiestxt").value,
-        "other": document.getElementById("othertxt").value,
+        "allergen": document.getElementById("allergies-text").value,
+        "other": document.getElementById("other-diets").value,
         "number_of_adults": adultNumValue,
         "number_of_children": childNumValue,
         "additional_passengers": readAdditionalPassengers(adultNumValue, childNumValue),
-        "payment_method": document.querySelector("input[name='payment-method']:checked").id,
-        "payment_details": getPayDetails(),
+        "payment_method": payment_details.pay_id,
+        "payment_details": payment_details
     }
 
     const myJSONSubmission = JSON.stringify(newSubmission);
@@ -101,6 +111,6 @@ const submitForm = (event) => {
     window.location.assign("./successful-process.html");
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('submit_form').addEventListener('click', submitForm);
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     document.getElementById('submit_form').addEventListener('click', submitForm);
+// })

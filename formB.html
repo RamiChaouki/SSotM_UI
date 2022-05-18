@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--
-        AUTHOR: MITCH, EDGAR
-        LAST UPDATED: MAY 02
+        AUTHOR: Ali, Rami, Dmitry
+        LAST UPDATED: MAY 18, 2022
     -->
 
 <head>
@@ -26,7 +26,8 @@
 
   <!-- link to external script -->
   <script src="scripts/formB.js"></script>
-  
+  <!-- <script src="scripts/functional-validator.js"></script> -->
+
 </head>
 
 <body class="parallax" style="background-image:url(./images/star-bg.jpg); background-size: 680px 455px; color:black">
@@ -80,7 +81,7 @@
   <form id="booking_form" method="get" action="./successful-process.html">
     <div class="opacity-75" style=color:white>
       <h1 class="text-center">Sunny Side of the Moon Reservation Form</h1>
-      <div id="warnings"></div>
+      <div id="warnings" class="text-center"></div>
       <section id="contact">
         <div class="container-lg">
           <div class="row justify-content-center my-5">
@@ -148,8 +149,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input pckg" type="radio" name="packages"
-                    id="sunny-honeymoon-package">
+                  <input class="form-check-input pckg" type="radio" name="packages" id="sunny-honeymoon-package">
                   <label class="form-check-label" for="sunny-honeymoon-package">
                     Sunny HoneyMoon Package
                   </label>
@@ -192,13 +192,14 @@
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="allergies">
                 <label class="form-check-label" for="allergies">Allergies</label>
-                <input type="text" class="form-control-inline" id="allergies-text" placeholder="Allergen">
+                <input type="text" class="form-control-inline allergen-text" id="allergies-text" placeholder="Allergen">
               </div>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="other">
                 <label class="form-check-label" for="other">Other</label>
                 <span>&emsp;</span>
-                <input type="text" class="form-control-inline" id="other-diets" placeholder="Other dietary restrictions">
+                <input type="text" class="form-control-inline allergen-text" id="other-diets"
+                  placeholder="Other dietary restrictions">
               </div>
               <br>
               <label for="number-of-adults" class="form-label">Number of Adults</label>
@@ -229,7 +230,7 @@
               <h6><i>$5,000 deposit per person required</i></h6>
               <br>
               <h6>Payment Methods</h6>
-              <fieldset id="payment-method" onclick = "addPaymentInfo(this);">
+              <fieldset id="payment-method" onclick="addPaymentInfo(this);">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="payment-method" id="visa">
                   <label class="form-check-label" for="visa">
@@ -265,13 +266,18 @@
                   <label class="form-check-label" for="dogecoin">
                     Dogecoin
                   </label>
-                <br />
+                  <br />
               </fieldset>
-                <br>
-                <div id="targetDiv_payment"></div>
+              <br>
+              <div id="targetDiv_payment"></div>
               <br />
               <div class="form-check">
+<<<<<<< HEAD
                 <input class="form-check-input" type="checkbox" value="" id="termsAndConditions" required name="Terms and Conditions">
+=======
+                <input class="form-check-input" type="checkbox" value="" id="termsAndConditions" required
+                  name="Terms and Conditions">
+>>>>>>> 541f605fc04579caf24babcc5561bcd5e1cd7b5a
                 <label class="form-check-label" for="termsAndConditions">
                   By submitting this form you agree with our <a href="terms-and-conditions.html">Terms and
                     Conditions</a>
@@ -507,10 +513,30 @@
     }
   </script>
   <script src="./scripts/localStorage.js"></script>
-    <!-- internal script -->
-    <script>
-      document.getElementById('submit_form').addEventListener('click', formValidation);
-     </script>
+  <!-- internal script -->
+  <script>
+    /**
+* A function that validates and stores booking form before submission
+*/
+    function formValidation(ev) {
+
+      $('#warnings').empty();
+      // console.log('warnings removed')
+      empty_fields = formFillValidator(ev);
+      // console.log(empty_fields)
+      invlaid_fields = FieldsValidator(ev);
+      // console.log(invlaid_fields);
+      if(empty_fields == 0 && invlaid_fields == 0){
+      submitForm(ev);
+    }
+  }
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('submit_form').addEventListener('click', formValidation);
+})
+  </script>
 </body>
 
 </html>
