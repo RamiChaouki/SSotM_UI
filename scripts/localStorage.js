@@ -1,6 +1,6 @@
 
-        // AUTHOR: Dmitry
-        // LAST UPDATED: MAY 17
+        // AUTHOR: Ali, Rami, Dmitry
+        // LAST UPDATED: MAY 18, 2022
 
 // Reads form into local storage
 const submitForm = (event) => {

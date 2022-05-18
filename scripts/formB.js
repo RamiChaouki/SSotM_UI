@@ -1,3 +1,6 @@
+// AUTHOR: Ali, Rami, Dmitry
+// LAST UPDATED: MAY 18, 2022
+
 // Java Script for formB page
 
 /**

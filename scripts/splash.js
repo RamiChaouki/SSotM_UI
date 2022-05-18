@@ -1,3 +1,7 @@
+// AUTHOR: Ali, Rami, Dmitry
+// LAST UPDATED: MAY 18, 2022
+
+
 //  Java Script fucntions for the Splash page
 /**
  * A function that changes the language of text on page

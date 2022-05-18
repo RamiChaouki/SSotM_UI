@@ -1,3 +1,7 @@
+// AUTHOR: Ali, Rami, Dmitry
+// LAST UPDATED: MAY 18, 2022
+
+
 function formValidation(ev) {
     $('#warnings').empty();
     let inputs = $('#booking_form input, #booking_form select');
