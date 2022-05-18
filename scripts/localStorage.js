@@ -1,8 +1,13 @@
 
-function submitForm() {
-    debugger;
+        // AUTHOR: Dmitry
+        // LAST UPDATED: MAY 17
+
+// Reads form into local storage
+const submitForm = (event) => {
+    event.preventDefault();  // to stop the form submitting
+
     //variables for grabbing the selection values
-    var province = document.getElementById("province");
+    var province = document.getElementById('province');
     var provinceValue = province.options[province.selectedIndex].value;
     var adultNum = document.getElementById('number-of-adults');
     var adultNumValue = adultNum.options[adultNum.selectedIndex].value;
@@ -10,7 +15,6 @@ function submitForm() {
     var childNumValue = childNum.options[childNum.selectedIndex].value;
     var lenOfStay = document.getElementById('length-of-stay');
     var lenOfStayValue = lenOfStay.options[lenOfStay.selectedIndex].value;
-
 
     // create an array of selected dietary restrictions    
     const dietary_restrictions = [];
@@ -20,34 +24,55 @@ function submitForm() {
         index++;
     };
 
-
+    // reads the fields of form for Adults and Children into an array of objects called additionalPassengers
     function readAdditionalPassengers(adultNumValue, childNumValue) {
-        debugger;
-        const additionalPassengers = [];
+        var additionalPassengers = [];
         let aNumber = parseInt(adultNumValue);
         let cNumber = parseInt(childNumValue);
-        for (let i = 0; i < aNumber; i++) {
-            additionalPassengers.push = {
-                "adult_num" : toString(i + 1),
-                "adult_fn" : document.getElementById("Adult_fname").value,
-                "adult_ln" : document.getElementById("Adult" + toString(i + 1) + "_lname").value,
-                "adult_age" : document.getElementById('Adult' + toString(i + 1) + '_age').value,
-                "adult_allergen": document.getElementById('Adult' + toString(i + 1) + '_allergen').value,
+        // loop to add adults objects into additionalPassengers array of objects
+        for (let i = 1; i <= aNumber; i++) {
+            var adult = {
+                "adult_num": i.toString(),
+                "adult_fn": document.getElementById("Adult" + i + "_fname").value,
+                "adult_ln": document.getElementById("Adult" + i + "_lname").value,
+                "adult_age": document.getElementById("Adult" + i + "_age").value,
+                "adult_allergen": document.getElementById("Adult" + i + "_allergen").value,
             }
+            additionalPassengers.push(adult);
         }
-        for (let j = 0 + aNumber; j < cNumber + aNumber; j++) {
-            additionalPassengers.push = {
-                child_num : toString(j + 1 - aNumber),
-                child_fn: document.getElementById('child' + toString(j + 1 - aNumber) + '_fn').value,
-                child_ln: document.getElementById('child' + toString(j + 1 - aNumber) + '_ln').value,
-                child_age: document.getElementById('child' + toString(j + 1 - aNumber) + '_age').value,
-                child_allergen: document.getElementById('child' + toString(j + 1 - aNumber) + '_allergen').value,
+        // loop to add children objects into additionalPassengers array of objects
+        for (let j = 1; j <= cNumber; j++) {
+            var child = {
+                "child_num": j.toString(),
+                "child_fn": document.getElementById("Child" + j + "_fname").value,
+                "child_ln": document.getElementById("Child" + j + "_lname").value,
+                "child_age": document.getElementById("Child" + j + "_age").value,
+                "child_allergen": document.getElementById("Child" + j + "_allergen").value,
             }
+            additionalPassengers.push(child);
         }
-        // return the array
+        // return the array   
         return (additionalPassengers);
     }
 
+    function getPayDetails() {
+        let pay_id = document.querySelector("input[name='payment-method']:checked").id;
+        let cards = ["visa", "mastercard", "americanexpress"];
+        var payDetails = {};
+        if (cards.includes(pay_id)) {
+            payDetails = {
+                "cardNumber": document.getElementById("card-number").value,
+                "cardHolder": document.getElementById("card-holder").value,
+                "CVS": document.getElementById("cvs").value,
+                "expiryDate": document.getElementById("expiry-date").value,
+            }
+        } else {
+            payDetails = {
+                "cryptoWallet": document.getElementById("wallet-address").value
+            }
+        }
+        return payDetails;
+    }
     // new form submission object - takes all non-changing text, radio and selection fields
     const newSubmission = {
         "fname": document.getElementById("fname").value,
@@ -55,81 +80,27 @@ function submitForm() {
         "address": document.getElementById("address").value,
         "city": document.getElementById("city").value,
         "province": provinceValue,
-        "postal-code": document.getElementById("postal_code").value,
+        "postal_code": document.getElementById("postal_code").value,
         "email": document.getElementById("email").value,
         "phone": document.getElementById("phone").value,
         "package": document.querySelector("input[name='packages']:checked").id,
-        "length-of-stay": lenOfStayValue,
-        "diet-restrictions": dietary_restrictions,
+        "length_of_stay": lenOfStayValue,
+        "diet_restrictions": dietary_restrictions,
         "allergen": document.getElementById("allergiestxt").value,
         "other": document.getElementById("othertxt").value,
-        "number-of-adults": adultNumValue,
-        "number-of-children": childNumValue,
-        "additional-passengers": readAdditionalPassengers(adultNumValue, childNumValue),
-        "payment-method": document.querySelector("input[name='payment-method']:checked").id,
-    }
-    debugger;
-    console.log(newSubmission);
-    debugger;
-    window.alert('hi');
-
-}
-/*    
-    // reads the fields of form for Adults and Children into an array of objects called additionalPassengers
-    function readAdditionalPassengers(adultNumValue, childNumValue) {
-        const additionalPassengers = [];
-        let aNumber = parseInt(adultNumValue);
-        let cNumber = parseInt(childNumValue);
-        for (let i = 0; i < aNumber; i++) {
-            additionalPassengers[i + 1] = {
-                adult_num: toString(i + 1),
-                adult_fn: document.getElementById('adult' + toString(i + 1) + '_fn').value,
-                adult_ln: document.getElementById('adult' + toString(i + 1) + '_ln').value,
-                adult_age: document.getElementById('adult' + toString(i + 1) + '_age').value,
-                adult_allergen: document.getElementById('adult' + toString(i + 1) + '_allergen').value,
-            }
-        }
-        for (let j = 0 + aNumber; j < cNumber + aNumber; j++) {
-            additionalPassengers[j + 1] = {
-                child_num: toString(j + 1 - aNumber),
-                child_fn: document.getElementById('child' + toString(j + 1 - aNumber) + '_fn').value,
-                child_ln: document.getElementById('child' + toString(j + 1 - aNumber) + '_ln').value,
-                child_age: document.getElementById('child' + toString(j + 1 - aNumber) + '_age').value,
-                child_allergen: document.getElementById('child' + toString(j + 1 - aNumber) + '_allergen').value,
-            }
-        }
-        // return the array
-        return (additionalPassengers);
+        "number_of_adults": adultNumValue,
+        "number_of_children": childNumValue,
+        "additional_passengers": readAdditionalPassengers(adultNumValue, childNumValue),
+        "payment_method": document.querySelector("input[name='payment-method']:checked").id,
+        "payment_details": getPayDetails(),
     }
 
+    const myJSONSubmission = JSON.stringify(newSubmission);
+    localStorage.setItem("JSONSub", myJSONSubmission);
+
+    window.location.assign("./successful-process.html");
 }
-
-
-
-
-// ALI - for adults the IDs are adult1, adult1_fn, adult1_ln, adult1_age, adult1_allergen
-//for children its child1, child1_fname, child1_lname, child1_age, child1_allergen
-
-
-
-
-//localStorage.setItem('submittedForm', JSON.Stringify(newSubmission));
-//----------------------------------------------------------------------
-// Storing data:
-// const myObj = {name: "John", age: 31, city: "New York"};
-// const myJSON = JSON.stringify(myObj);
-// localStorage.setItem("testJSON", myJSON);
-
-// // Retrieving data:
-// let text = localStorage.getItem("testJSON");
-// let obj = JSON.parse(text);
-// document.getElementById("demo").innerHTML = obj.name;
-//----------------------------------------------------------------------    
-
-console.warn('new submission', { newSubmission });
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("submit_form").addEventListener("click", submitForm);
+    document.getElementById('submit_form').addEventListener('click', submitForm);
 })
-
-*/
