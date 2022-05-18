@@ -19,7 +19,7 @@
     crossorigin="anonymous"></script>
 
   <!--Custom CSS-->
-  <link href="./css/formB.css" rel="stylesheet">
+  <link href="../css/formB.css" rel="stylesheet">
 
   <!-- Link to jQuery -->
   <script src="../scripts/jQuery 3.6.0.js"></script>
@@ -74,13 +74,15 @@
 
         </select>
       </div>
-
     </div>
   </nav>
+
+
   <!--NAVBAR END-->
   <form id="booking_form" method="get" action="./successful-process-fr.html">
     <div class="opacity-75" style=color:white>
       <h1 class="text-center">Formulaire de réservation Sunny Side of the Moon </h1>
+      <div id="warnings"></div>
       <section id="contact">
         <div class="container-lg">
           <div class="row justify-content-center my-5">
@@ -268,7 +270,7 @@
               <div id="targetDiv_payment"></div>
               <br />
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="termsAndConditions" required>
+                <input class="form-check-input" type="checkbox" value="" id="termsAndConditions" required name="Terms and Conditions">
                 <label class="form-check-label" for="termsAndConditions">
                   En soummissant ce document, vous acceptez les <a href="terms-and-conditions.html">termes et
                     conditions</a>
@@ -524,6 +526,9 @@
     })()
   </script>
   <script src="./scripts/localStorage.js"></script>
+  <script>
+    document.getElementById('submit_form').addEventListener('click', formValidation);
+  </script>
 </body>
 
 </html>

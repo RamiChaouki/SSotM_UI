@@ -80,6 +80,7 @@
   <form id="booking_form" method="get" action="./successful-process.html">
     <div class="opacity-75" style=color:white>
       <h1 class="text-center">Sunny Side of the Moon Reservation Form</h1>
+      <div id="warnings"></div>
       <section id="contact">
         <div class="container-lg">
           <div class="row justify-content-center my-5">
@@ -88,18 +89,18 @@
               <label for="fname" class="form-label">First Name</label>
               <!--added class .personal to input, remove if not used-->
               <input type="text" class="form-control personal" id="fname" placeholder="e.g. Neil" size="20"
-                maxlength="20">
+                maxlength="20" required name="First Name">
               <label for="lname" class="form-label">Last Name</label>
               <input type="text" class="form-control personal" id="lname" placeholder="e.g. Armstrong" size="20"
-                maxlength="20" >
+                maxlength="20" required name="Last Name">
               <label for="address" class="form-label">Address</label>
               <input type="text" class="form-control personal" id="address" placeholder="e.g. 742 Evergreen Terrace"
-                size="50" maxlength="50" >
+                size="50" maxlength="50" required name="Address">
               <label for="city" class="form-label">City</label>
               <input type="text" class="form-control personal" id="city" placeholder="e.g. Saint-Louis-du-Ha! Ha!"
-                size="20" maxlength="20">
+                size="20" maxlength="20" required name="City">
               <label for="province" class="form-label">Province / Territory</label>
-              <select class="form-select personal" id="province">
+              <select class="form-select personal" id="province" name="Province">
                 <option></option>
                 <option value="alberta">Alberta</option>
                 <option value="british_columbia">British Columbia</option>
@@ -117,17 +118,17 @@
               </select>
               <label for="postal_code" class="form-label">Postal Code</label>
               <input type="text" class="form-control personal" id="postal_code" placeholder="e.g. H0H 0H0" size="7"
-                maxlength="7" >
+                maxlength="7" required name="Postal Code">
               <label for="email" class="form-label">Email Address</label>
               <input type="email" class="form-control personal" id="email" placeholder="e.g. neil.armstrong@NASA.gov"
-                size="40" maxlength="40" >
+                size="40" maxlength="40" required name="Email Address">
               <label for="phone" class="form-label">Phone Number</label>
               <input type="text" class="form-control personal" id="phone" placeholder="e.g. (555) 867-5309" size="16"
-                maxlength="16" >
+                maxlength="16" required name="Phone Number">
               <br />
               <h2 class="text-center">Hotel Reservation Information</h2>
               <h6>Packages</h6>
-              <fieldset id="packages">
+              <fieldset id="packages" name="packages">
                 <div class="form-check">
                   <input class="form-check-input pckg" type="radio" name="packages" id="sunny-package" checked>
                   <label class="form-check-label" for="sunny-package">
@@ -155,7 +156,7 @@
                 </div>
                 <br />
                 <label for="length-of-stay" class="form-label">Length of Stay (excluding travel time)</label>
-                <select class="form-select pckg" id="length-of-stay">
+                <select class="form-select pckg" id="length-of-stay" name="Length of Stay">
                   <option value="4-days">4 Days</option>
                   <option value="8-days">8 Days</option>
                   <option value="15-days">15 Days</option>
@@ -163,7 +164,7 @@
                 </select>
               </fieldset>
               <br />
-              <h6> Dietary Restrictions</h6>
+              <h6>Dietary Restrictions</h6>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="vegetarian">
                 <label class="form-check-label" for="vegetarian">Vegetarian</label>
@@ -191,13 +192,13 @@
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="allergies">
                 <label class="form-check-label" for="allergies">Allergies</label>
-                <input type="text" class="form-control-inline" id="allergiestxt" placeholder="Allergen">
+                <input type="text" class="form-control-inline" id="allergies-text" placeholder="Allergen">
               </div>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="other">
                 <label class="form-check-label" for="other">Other</label>
                 <span>&emsp;</span>
-                <input type="text" class="form-control-inline" id="othertxt" placeholder="Other dietary restrictions">
+                <input type="text" class="form-control-inline" id="other-diets" placeholder="Other dietary restrictions">
               </div>
               <br>
               <label for="number-of-adults" class="form-label">Number of Adults</label>
@@ -270,7 +271,7 @@
                 <div id="targetDiv_payment"></div>
               <br />
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="termsAndConditions" >
+                <input class="form-check-input" type="checkbox" value="" id="termsAndConditions" required name="Terms and Conditions">
                 <label class="form-check-label" for="termsAndConditions">
                   By submitting this form you agree with our <a href="terms-and-conditions.html">Terms and
                     Conditions</a>
@@ -506,6 +507,10 @@
     }
   </script>
   <script src="./scripts/localStorage.js"></script>
+    <!-- internal script -->
+    <script>
+      document.getElementById('submit_form').addEventListener('click', formValidation);
+     </script>
 </body>
 
 </html>
