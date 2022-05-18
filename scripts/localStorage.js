@@ -9,16 +9,13 @@ const submitForm = (event) => {
     //variables for grabbing the selection values
     var province = document.getElementById('province');
     var provinceValue = province.options[province.selectedIndex].value;
-    console.log(provinceValue)
     var adultNum = document.getElementById('number-of-adults');
     var adultNumValue = adultNum.options[adultNum.selectedIndex].value;
-    console.log(adultNumValue)
     var childNum = document.getElementById('number-of-children');
     var childNumValue = childNum.options[childNum.selectedIndex].value;
-    console.log(childNumValue)
     var lenOfStay = document.getElementById('length-of-stay');
     var lenOfStayValue = lenOfStay.options[lenOfStay.selectedIndex].value;
-    console.log(lenOfStayValue)
+
 
     // create an array of selected dietary restrictions    
     const dietary_restrictions = [];
@@ -27,6 +24,7 @@ const submitForm = (event) => {
         dietary_restrictions[index] = i.id;
         index++;
     };
+
 
     // reads the fields of form for Adults and Children into an array of objects called additionalPassengers
     function readAdditionalPassengers(adultNumValue, childNumValue) {
@@ -59,7 +57,9 @@ const submitForm = (event) => {
         return (additionalPassengers);
     }
 
-    let payment_details = function () {
+
+    // read the payment details into an object and return it
+    function payment_details () {
         let pay_id = (document.querySelector("input[name='payment-method']:checked")) ? document.querySelector("input[name='payment-method']:checked").id : '';
         let cards = ["visa", "mastercard", "americanexpress"];
         var payDetails = {};
@@ -81,8 +81,8 @@ const submitForm = (event) => {
     }
         return payDetails;
     }
+    
 
-    console.log(document.querySelector("input[name='payment-method']:checked"));
     // new form submission object - takes all non-changing text, radio and selection fields
     const newSubmission = {
         "fname": document.getElementById("fname").value,
@@ -101,8 +101,8 @@ const submitForm = (event) => {
         "number_of_adults": adultNumValue,
         "number_of_children": childNumValue,
         "additional_passengers": readAdditionalPassengers(adultNumValue, childNumValue),
-        "payment_method": payment_details.pay_id,
-        "payment_details": payment_details
+        "payment_method": payment_details().pay_id,
+        "payment_details": payment_details()
     }
 
     const myJSONSubmission = JSON.stringify(newSubmission);
@@ -110,7 +110,3 @@ const submitForm = (event) => {
 
     window.location.assign("./successful-process.html");
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     document.getElementById('submit_form').addEventListener('click', submitForm);
-// })
