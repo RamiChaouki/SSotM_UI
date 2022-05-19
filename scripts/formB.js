@@ -128,9 +128,7 @@ function addPaymentInfo(paymentList) {
     // console.log(payment_method);
     // identify current month (to be used as minimum in expiry date)
     let currentDate = new Date();
-    const startDate = new Date("2015-03");
-    startDate.setMonth(currentDate.getMonth());
-    startDate.setFullYear(currentDate.getFullYear());
+    const startDate = currentDate.toISOString().slice(0,7);
     // card payment methods
     let cards = ["visa", "mastercard", "americanexpress"];
     // if selected payment method uses cards, then show info boxes for cards to be filled
@@ -153,7 +151,7 @@ function addPaymentInfo(paymentList) {
         <input type="text" class="form-control" id="cvs" size="4" maxlength="4">
           <br>
           <label for="expiry-date">${stringList.expiryDate}</label>
-          <input type="month" id="expiry-date" name="expiry-date" min=${startDate} value='yyyy-MM'>
+          <input type="month" id="expiry-date" name="expiry-date" min=${startDate} value=${startDate}>
 
           </div>
 `);
@@ -340,7 +338,7 @@ function alphaTextValidator(inputList) {
 
 function addressValidator(inputList) {
     // let regex = new RegExp('^[0-9]+\s?[A-zÀ-ú\-\s\d]+$', 'i')
-    const regex = new RegExp('^[0-9]+[\w\.\s\-].*$', 'i');
+    const regex = new RegExp('^[0-9]+[\w\.\s\-\d].*$', 'i');
 
     let lang = document.getElementById('lang').getElementsByTagName('option')[0].innerHTML;
     warningString = (lang == 'English') ? "The address format you entered is invalid" : "Le format d/'adresse que vous avez saisi n/'est pas valide";
