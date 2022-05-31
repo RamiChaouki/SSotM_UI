@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+.list-group-item {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+
+.terms-and-conditions {
+    margin: 20px;
+}

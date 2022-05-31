@@ -1,0 +1,13 @@
+ @charset "utf-8";
+
+  /* AUTHOR: ALI NEHME
+LAST UPDATED: MAY 02 */
+
+.list-group-item {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+
+.terms-and-conditions {
+    margin: 20px;
+}

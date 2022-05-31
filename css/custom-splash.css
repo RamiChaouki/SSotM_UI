@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+/* AUTHOR: ALI NEHME
+LAST UPDATED: MAY 02 */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    font-size: 17px;
+}
+
+.lang-container {
+    position: fixed;
+    top: 10%;
+}
+
+#lang {
+    position: relative;
+    left: 90%;
+    padding: 10px;
+    width: fit-content;
+    color: aliceblue;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+#splash-button {
+    position: fixed;
+    bottom: 10%;
+    width: 100vw;
+    text-align: center;
+    color: gainsboro;
+    animation: fadeIn 10s;
+    -webkit-animation: fadeIn 10s;
+    -moz-animation: fadeIn 10s;
+    -o-animation: fadeIn 10s;
+    -ms-animation: fadeIn 10s;
+
+}
+
+.btn a {
+    text-decoration: none;
+    color: gainsboro;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+
+    100% {opacity: 1;}
+}

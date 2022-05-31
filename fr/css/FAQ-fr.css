@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+#accordionFlushExample {
+  color: black;
+}
+
+p {
+  color: whitesmoke;
+}
+
+#moonInteract {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 600px;
+  -webkit-box-shadow: 0 0 30px black;
+          box-shadow: 0 0 30px black;
+}
+
+#faq {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+body {
+  background-color: #000;
+  background-image: url(../images/star-bg.jpg);
+  background-size: 680px 455px;
+  margin: 0;
+  padding: 0;
+  font-family: D-DIN-Regular, Arial,Verdana,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+  width: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.h2, h2 {
+  text-shadow: 0 0 15px whitesmoke;
+}
+
+.figure-img {
+  -webkit-box-shadow: 0 1rem 3rem rgba(140, 95, 168, 0.78);
+          box-shadow: 0 1rem 3rem rgba(140, 95, 168, 0.78);
+  height: 100%;
+}
+
+.cus-bg {
+  text-decoration: none;
+  color: rgba(225, 234, 245, 0.95);
+  font-size: 21px;
+  background-image: -webkit-gradient(linear, left top, right top, from(black), color-stop(#121a27), to(black)) !important;
+  background-image: linear-gradient(to right, black, #121a27, black) !important;
+  border-bottom: 5px solid #c6b3b3;
+  text-shadow: 0 0 2px black, 0 0 2px whitesmoke;
+}
+
+.nav-link > a:hover {
+  color: white;
+  text-shadow: 0 0 3px black, 0 2px 15px white !important;
+}
+
+.nav-link > a {
+  text-decoration: none;
+  color: rgba(225, 234, 245, 0.95);
+}
